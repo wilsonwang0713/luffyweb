@@ -16,7 +16,7 @@ export default function MainPage() {
       {/* Particles Background */}
       <div className="fixed inset-0 -z-10">
         <Particles
-          particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
+          particleColors={['#5227FF', '#00D4FF', '#FF00D6']}
           particleCount={200}
           particleSpread={10}
           speed={0.1}
@@ -33,7 +33,7 @@ export default function MainPage() {
           <div className="max-w-5xl mx-auto text-center space-y-8">
             <ScrollFade>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm font-medium">
-                <Zap className="h-4 w-4 text-theme-warm" />
+                <Zap className="h-4 w-4 text-[#FF00D6]" />
                 <span>AI-Native · Blockchain-Native · Production-Ready</span>
               </div>
             </ScrollFade>
@@ -41,7 +41,7 @@ export default function MainPage() {
             <ScrollFade>
               <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold tracking-tight leading-none">
                 Engineer the{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-slate via-theme-warm to-theme-slate animate-gradient-shift">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] animate-gradient-shift">
                   Future
                 </span>
                 <br />
@@ -58,7 +58,7 @@ export default function MainPage() {
             <ScrollFade delay={0.4}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
                 <Link href="/contact">
-                  <MagneticButton className="group relative overflow-hidden bg-gradient-to-r from-theme-slate via-theme-warm to-theme-slate hover:shadow-[0_0_40px_rgba(71,90,108,0.6)] transition-shadow duration-300">
+                  <MagneticButton className="group relative overflow-hidden bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] hover:shadow-[0_0_40px_rgba(82,39,255,0.6)] transition-shadow duration-300">
                     <span className="relative z-10 flex items-center">
                       INITIATE BUILD <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </span>
@@ -68,7 +68,7 @@ export default function MainPage() {
                   <Button
                     variant="glass"
                     size="lg"
-                    className="rounded-full border border-white/20 hover:border-theme-warm/50 hover:shadow-[0_0_20px_rgba(214,195,176,0.3)] transition-all group"
+                    className="rounded-full border border-white/20 hover:border-aurora-cyan/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all group"
                   >
                     <Shield className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
                     PROOF OF WORK
@@ -86,7 +86,7 @@ export default function MainPage() {
           <ScrollFade>
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-theme-warm to-white">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-aurora-cyan to-white">
                   Core Protocols
                 </span>
               </h2>
@@ -98,15 +98,15 @@ export default function MainPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             <ScrollFade delay={0.1}>
-              <SpotlightCard className="group border border-theme-warm/20 hover:border-theme-warm/40 transition-colors" spotlightColor="rgba(214, 195, 176, 0.25)">
+              <SpotlightCard className="group border border-aurora-violet/20 hover:border-aurora-violet/40 transition-colors" spotlightColor="rgba(82, 39, 255, 0.25)">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-theme-warm/10 group-hover:bg-theme-warm/20 transition-colors ring-1 ring-theme-warm/30">
-                    <Cpu className="h-6 w-6 text-theme-warm" />
+                  <div className="p-3 rounded-lg bg-aurora-violet/10 group-hover:bg-aurora-violet/20 transition-colors ring-1 ring-aurora-violet/30">
+                    <Cpu className="h-6 w-6 text-aurora-violet" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                       Neural Architecture
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-theme-warm/20 text-theme-warm">AI/ML</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-aurora-violet/20 text-aurora-violet">AI/ML</span>
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Production-grade LLM orchestration, vector databases, RAG systems, and multi-agent frameworks. We engineer intelligence at scale — from fine-tuning to inference optimization.
@@ -117,15 +117,15 @@ export default function MainPage() {
             </ScrollFade>
 
             <ScrollFade delay={0.2}>
-              <SpotlightCard className="group border border-theme-slate/20 hover:border-theme-slate/40 transition-colors" spotlightColor="rgba(71, 90, 108, 0.25)">
+              <SpotlightCard className="group border border-aurora-cyan/20 hover:border-aurora-cyan/40 transition-colors" spotlightColor="rgba(0, 212, 255, 0.25)">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-theme-slate/10 group-hover:bg-theme-slate/20 transition-colors ring-1 ring-theme-slate/30">
-                    <Network className="h-6 w-6 text-theme-slate" />
+                  <div className="p-3 rounded-lg bg-aurora-cyan/10 group-hover:bg-aurora-cyan/20 transition-colors ring-1 ring-aurora-cyan/30">
+                    <Network className="h-6 w-6 text-aurora-cyan" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                       Decentralized Systems
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-theme-slate/20 text-theme-slate">Web3</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-aurora-cyan/20 text-aurora-cyan">Web3</span>
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Smart contract development, MEV strategies, wallet infrastructure, and dApp architecture. Deep fluency in EVM, Solana, and Layer 2 ecosystems. We ship on-chain.
@@ -136,15 +136,15 @@ export default function MainPage() {
             </ScrollFade>
 
             <ScrollFade delay={0.3}>
-              <SpotlightCard className="group border border-theme-warm/20 hover:border-theme-warm/40 transition-colors" spotlightColor="rgba(214, 195, 176, 0.25)">
+              <SpotlightCard className="group border border-[#FF00D6]/20 hover:border-[#FF00D6]/40 transition-colors" spotlightColor="rgba(255, 0, 214, 0.25)">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-theme-warm/10 group-hover:bg-theme-warm/20 transition-colors ring-1 ring-theme-warm/30">
-                    <Code2 className="h-6 w-6 text-theme-warm" />
+                  <div className="p-3 rounded-lg bg-[#FF00D6]/10 group-hover:bg-[#FF00D6]/20 transition-colors ring-1 ring-[#FF00D6]/30">
+                    <Code2 className="h-6 w-6 text-[#FF00D6]" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                       Full-Stack Infrastructure
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-theme-warm/20 text-theme-warm">Cloud</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-[#FF00D6]/20 text-[#FF00D6]">Cloud</span>
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Kubernetes deployments, serverless architectures, real-time data pipelines, and edge computing. We build resilient systems that scale from prototype to unicorn.
@@ -155,15 +155,15 @@ export default function MainPage() {
             </ScrollFade>
 
             <ScrollFade delay={0.4}>
-              <SpotlightCard className="group border border-theme-slate/20 hover:border-theme-slate/40 transition-colors" spotlightColor="rgba(71, 90, 108, 0.25)">
+              <SpotlightCard className="group border border-aurora-violet/20 hover:border-aurora-violet/40 transition-colors" spotlightColor="rgba(82, 39, 255, 0.25)">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-theme-slate/10 group-hover:bg-theme-slate/20 transition-colors ring-1 ring-theme-slate/30">
-                    <Layers className="h-6 w-6 text-theme-slate" />
+                  <div className="p-3 rounded-lg bg-aurora-violet/10 group-hover:bg-aurora-violet/20 transition-colors ring-1 ring-aurora-violet/30">
+                    <Layers className="h-6 w-6 text-aurora-violet" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                       Interface Engineering
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-theme-slate/20 text-theme-slate">UX</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-aurora-violet/20 text-aurora-violet">UX</span>
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Design systems, micro-interactions, and performance optimization. Component libraries built for accessibility, internationalization, and pixel-perfect execution.
@@ -182,7 +182,7 @@ export default function MainPage() {
           <ScrollFade>
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-slate via-theme-warm to-theme-slate">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-cyan via-[#FF00D6] to-aurora-violet">
                   Execution Manifest
                 </span>
               </h2>
@@ -194,9 +194,9 @@ export default function MainPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <ScrollFade delay={0.1}>
-              <div className="space-y-4 glass-panel p-6 rounded-xl border border-theme-warm/20">
+              <div className="space-y-4 glass-panel p-6 rounded-xl border border-aurora-cyan/20">
                 <div className="flex items-center gap-3">
-                  <div className="h-2 w-2 rounded-full bg-theme-warm animate-pulse" />
+                  <div className="h-2 w-2 rounded-full bg-aurora-cyan animate-pulse" />
                   <h3 className="text-2xl font-semibold">Zero Overhead Thinking</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
@@ -206,9 +206,9 @@ export default function MainPage() {
             </ScrollFade>
 
             <ScrollFade delay={0.2}>
-              <div className="space-y-4 glass-panel p-6 rounded-xl border border-theme-slate/20">
+              <div className="space-y-4 glass-panel p-6 rounded-xl border border-aurora-violet/20">
                 <div className="flex items-center gap-3">
-                  <div className="h-2 w-2 rounded-full bg-theme-slate animate-pulse" />
+                  <div className="h-2 w-2 rounded-full bg-aurora-violet animate-pulse" />
                   <h3 className="text-2xl font-semibold">Cryptographic Standards</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
@@ -218,9 +218,9 @@ export default function MainPage() {
             </ScrollFade>
 
             <ScrollFade delay={0.3}>
-              <div className="space-y-4 glass-panel p-6 rounded-xl border border-theme-warm/20">
+              <div className="space-y-4 glass-panel p-6 rounded-xl border border-[#FF00D6]/20">
                 <div className="flex items-center gap-3">
-                  <div className="h-2 w-2 rounded-full bg-theme-warm animate-pulse" />
+                  <div className="h-2 w-2 rounded-full bg-[#FF00D6] animate-pulse" />
                   <h3 className="text-2xl font-semibold">Vertical Integration</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
@@ -230,9 +230,9 @@ export default function MainPage() {
             </ScrollFade>
 
             <ScrollFade delay={0.4}>
-              <div className="space-y-4 glass-panel p-6 rounded-xl border border-theme-slate/20">
+              <div className="space-y-4 glass-panel p-6 rounded-xl border border-aurora-cyan/20">
                 <div className="flex items-center gap-3">
-                  <div className="h-2 w-2 rounded-full bg-theme-slate animate-pulse" />
+                  <div className="h-2 w-2 rounded-full bg-aurora-cyan animate-pulse" />
                   <h3 className="text-2xl font-semibold">Proof of Performance</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
@@ -250,7 +250,7 @@ export default function MainPage() {
           <ScrollFade>
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-theme-warm to-white">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-aurora-violet to-white">
                   Tech Stack
                 </span>
               </h2>
@@ -263,7 +263,7 @@ export default function MainPage() {
           <ScrollFade delay={0.2}>
             <div className="max-w-4xl mx-auto">
               <div className="glass-panel p-8 rounded-2xl border border-white/10 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-theme-warm/5 via-transparent to-theme-slate/5" />
+                <div className="absolute inset-0 bg-gradient-to-br from-aurora-violet/5 via-transparent to-aurora-cyan/5" />
                 <div className="relative flex flex-wrap gap-3 justify-center">
                   {[
                     { name: 'TypeScript', category: 'lang' },
@@ -289,9 +289,9 @@ export default function MainPage() {
                       key={tech.name}
                       className={`px-4 py-2 rounded-full glass text-sm font-mono font-medium hover:bg-white/10 transition-all cursor-default border ${
                         tech.category === 'web3'
-                          ? 'border-theme-slate/30 hover:border-theme-slate/60 hover:shadow-[0_0_15px_rgba(71,90,108,0.3)]'
+                          ? 'border-aurora-cyan/30 hover:border-aurora-cyan/60 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)]'
                           : tech.category === 'ai'
-                          ? 'border-theme-warm/30 hover:border-theme-warm/60 hover:shadow-[0_0_15px_rgba(214,195,176,0.3)]'
+                          ? 'border-aurora-violet/30 hover:border-aurora-violet/60 hover:shadow-[0_0_15px_rgba(82,39,255,0.3)]'
                           : 'border-white/10 hover:border-white/30'
                       }`}
                     >
@@ -310,14 +310,14 @@ export default function MainPage() {
         <div className="container-custom">
           <ScrollFade>
             <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto border border-white/10 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-theme-warm/10 via-theme-slate/10 to-theme-warm/10 opacity-50" />
+              <div className="absolute inset-0 bg-gradient-to-br from-aurora-violet/10 via-aurora-cyan/10 to-[#FF00D6]/10 opacity-50" />
               <div className="relative">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm font-medium border border-theme-warm/30">
-                  <Zap className="h-4 w-4 text-theme-warm" />
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm font-medium border border-aurora-cyan/30">
+                  <Zap className="h-4 w-4 text-aurora-cyan" />
                   <span>Protocol-Level Partnership</span>
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-theme-warm to-white">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-aurora-cyan to-white">
                     Execute Your Vision
                   </span>
                 </h2>
@@ -326,7 +326,7 @@ export default function MainPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Link href="/contact">
-                    <MagneticButton className="group relative overflow-hidden bg-gradient-to-r from-theme-slate via-theme-warm to-theme-slate hover:shadow-[0_0_50px_rgba(71,90,108,0.8)] transition-shadow duration-300">
+                    <MagneticButton className="group relative overflow-hidden bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] hover:shadow-[0_0_50px_rgba(82,39,255,0.8)] transition-shadow duration-300">
                       <span className="relative z-10 flex items-center font-semibold">
                         DEPLOY NOW <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </span>
@@ -336,7 +336,7 @@ export default function MainPage() {
                     <Button
                       variant="glass"
                       size="lg"
-                      className="rounded-full border border-white/20 hover:border-theme-warm/50 hover:shadow-[0_0_20px_rgba(214,195,176,0.3)] transition-all"
+                      className="rounded-full border border-white/20 hover:border-aurora-cyan/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all"
                     >
                       <Shield className="mr-2 h-4 w-4" />
                       VERIFY TRACK RECORD
