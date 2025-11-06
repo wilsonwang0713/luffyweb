@@ -1,209 +1,208 @@
 'use client';
 
+import { ScrollFade } from '@/components/ui/scroll-fade';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { MagneticButton } from '@/components/ui/magnetic-button';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'Services - LuffyDesign',
-  description: 'Explore our comprehensive software development services including custom software development, cloud services, embedded systems, and IoT solutions.',
-};
+import { ArrowRight, Cpu, Wallet, Code2, Layers, CheckCircle2, Sparkles, Shield, Zap, Target } from 'lucide-react';
 
 export default function Services() {
+  const services = [
+    {
+      id: 'ai',
+      icon: Cpu,
+      title: 'AI Software Outsourcing',
+      description: 'Production-grade intelligent systems that deliver measurable outcomes',
+      color: 'aurora-violet',
+      features: [
+        'Custom LLM applications (RAG, fine-tuning, prompt engineering)',
+        'Multi-agent systems and autonomous workflows',
+        'Semantic search and vector database architecture',
+        'AI model integration and inference optimization',
+        'Conversational AI and chatbot platforms',
+      ],
+      approach: 'We don't just wire up APIs. We architect systems that deliver consistent results at scale. Prompt engineering, context management, fallback strategies, and cost optimization built in from day one.',
+      outcomes: [
+        '60-80% reduction in manual processing time',
+        'Sub-2s response times for complex AI queries',
+        '95%+ user satisfaction on AI-generated outputs',
+        'Production-ready systems in 8-12 weeks',
+      ],
+    },
+    {
+      id: 'web3',
+      icon: Wallet,
+      title: 'Blockchain & Wallet Integrations',
+      description: 'Secure, audited Web3 platforms and decentralized applications',
+      color: 'aurora-cyan',
+      features: [
+        'Non-custodial wallet applications',
+        'Multi-chain DeFi protocols',
+        'NFT platforms and smart contract systems',
+        'Blockchain indexing and analytics',
+        'Web3 authentication and identity',
+      ],
+      approach: 'Security-first architecture. Comprehensive testing on testnets. Gas optimization. Multi-sig patterns. Recovery mechanisms. We understand the stakes in Web3.',
+      outcomes: [
+        'Zero security incidents in production',
+        '40-60% gas fee optimization',
+        'Cross-chain support (EVM, Solana, Cosmos)',
+        'Audited smart contracts and secure key management',
+      ],
+    },
+    {
+      id: 'design',
+      icon: Layers,
+      title: 'Design Systems & UX Architecture',
+      description: 'Scalable component libraries and interaction patterns',
+      color: 'aurora-aqua',
+      features: [
+        'Component libraries (React, Vue, native)',
+        'Design token systems and theming',
+        'Interaction patterns and micro-animations',
+        'Responsive layout systems',
+        'Accessibility compliance (WCAG AA+)',
+      ],
+      approach: 'Systems that scale. Not one-off screens, but reusable patterns with clear documentation. Built for designers and developers to use confidently.',
+      outcomes: [
+        '50% faster feature development with mature design systems',
+        'Consistent cross-platform experiences',
+        '90+ Lighthouse scores on production sites',
+        'AA or AAA accessibility compliance',
+      ],
+    },
+    {
+      id: 'fullstack',
+      icon: Code2,
+      title: 'Full-Stack Web / Mobile Engineering',
+      description: 'Modern applications from API to interface',
+      color: 'aurora-violet',
+      features: [
+        'Progressive web applications',
+        'Native mobile apps (React Native, Swift, Kotlin)',
+        'Real-time collaborative platforms',
+        'API design and backend architecture',
+        'DevOps, CI/CD, and infrastructure',
+      ],
+      approach: 'Modern frameworks. Battle-tested patterns. Observability from day one. We ship features fast without accumulating technical debt.',
+      outcomes: [
+        '2-week sprint cycles with deployed increments',
+        '99.9%+ uptime SLAs',
+        'Sub-second page loads on global CDN',
+        'Horizontal scalability to 100K+ concurrent users',
+      ],
+    },
+  ];
+
   return (
     <main className="min-h-screen">
-      {/* Header Section */}
-      <section className="bg-gradient-to-r from-primary-color to-secondary-color text-white py-20">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-6">Our Services</h1>
-          <p className="text-xl max-w-2xl">
-            We provide end-to-end software development services tailored to your business needs,
-            from custom applications to cloud solutions and IoT development.
-          </p>
+      {/* Hero Section */}
+      <section className="py-32 px-4">
+        <div className="container-custom">
+          <ScrollFade>
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold">
+                Services That <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet to-aurora-cyan">Ship</span>
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Specialized technical capabilities across AI, Web3, design systems, and full-stack engineering.
+              </p>
+            </div>
+          </ScrollFade>
         </div>
       </section>
 
-      {/* Custom Software Development */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Custom Software Development</h2>
-            <p className="text-lg text-gray-600 mb-8">
-              We build tailored software solutions that address your specific business challenges and
-              help you gain a competitive edge in your industry.
-            </p>
-          </div>
-          
-          <div className="services-grid mt-12">
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Web Applications</h3>
-              <p className="text-gray-600 mb-4">
-                Responsive, scalable web applications built with modern frameworks and technologies
-                that deliver exceptional user experiences.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>Progressive Web Apps (PWAs)</li>
-                <li>Enterprise Web Portals</li>
-                <li>E-commerce Platforms</li>
-                <li>Content Management Systems</li>
-              </ul>
-            </div>
-            
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Mobile Applications</h3>
-              <p className="text-gray-600 mb-4">
-                Native and cross-platform mobile applications that provide seamless experiences
-                across iOS and Android devices.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>Native iOS & Android Apps</li>
-                <li>Cross-platform Solutions</li>
-                <li>Mobile Commerce</li>
-                <li>Location-based Services</li>
-              </ul>
-            </div>
-            
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Desktop Applications</h3>
-              <p className="text-gray-600 mb-4">
-                High-performance desktop applications for Windows, macOS, and Linux that
-                deliver powerful functionality with intuitive interfaces.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>Cross-platform Desktop Apps</li>
-                <li>System Utilities</li>
-                <li>Productivity Tools</li>
-                <li>Industry-specific Solutions</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Services Detail Sections */}
+      {services.map((service, index) => (
+        <section key={service.id} id={service.id} className="py-20">
+          <div className="container-custom">
+            <ScrollFade>
+              <div className="max-w-6xl mx-auto">
+                <div className="flex items-start gap-6 mb-12">
+                  <div className={`p-4 rounded-xl bg-${service.color}/10`}>
+                    <service.icon className={`h-10 w-10 text-${service.color}`} />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-4xl font-bold mb-4">{service.title}</h2>
+                    <p className="text-xl text-muted-foreground">{service.description}</p>
+                  </div>
+                </div>
 
-      {/* Cloud Services */}
-      <section className="py-16 bg-light-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Cloud Services</h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Leverage the power of cloud computing with our comprehensive cloud services,
-              from migration to optimization and management.
-            </p>
-          </div>
-          
-          <div className="services-grid mt-12">
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Cloud Migration</h3>
-              <p className="text-gray-600 mb-4">
-                Seamlessly migrate your existing applications and infrastructure to the cloud
-                with minimal disruption to your business operations.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>Assessment & Planning</li>
-                <li>Data Migration</li>
-                <li>Application Refactoring</li>
-                <li>Post-migration Support</li>
-              </ul>
-            </div>
-            
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Cloud-Native Development</h3>
-              <p className="text-gray-600 mb-4">
-                Build modern, scalable applications designed specifically for cloud environments
-                using microservices, containers, and serverless architectures.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>Microservices Architecture</li>
-                <li>Containerization (Docker, Kubernetes)</li>
-                <li>Serverless Applications</li>
-                <li>API Development & Integration</li>
-              </ul>
-            </div>
-            
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">DevOps & CI/CD</h3>
-              <p className="text-gray-600 mb-4">
-                Implement DevOps practices and continuous integration/continuous deployment
-                pipelines to accelerate your software delivery lifecycle.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>CI/CD Pipeline Setup</li>
-                <li>Infrastructure as Code</li>
-                <li>Automated Testing</li>
-                <li>Monitoring & Logging</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <ScrollFade delay={0.1}>
+                    <SpotlightCard>
+                      <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                        <Sparkles className="h-5 w-5 text-aurora-violet" />
+                        What We Build
+                      </h3>
+                      <ul className="space-y-3">
+                        {service.features.map((feature) => (
+                          <li key={feature} className="flex items-start gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-aurora-cyan flex-shrink-0 mt-0.5" />
+                            <span className="text-muted-foreground">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </SpotlightCard>
+                  </ScrollFade>
 
-      {/* Embedded Software & IoT */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Embedded Software & IoT Solutions</h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Develop intelligent connected devices and systems with our embedded software
-              and IoT development services.
-            </p>
-          </div>
-          
-          <div className="services-grid mt-12">
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Embedded Systems Development</h3>
-              <p className="text-gray-600 mb-4">
-                Custom firmware and software for embedded systems across various industries,
-                from consumer electronics to industrial automation.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>Firmware Development</li>
-                <li>RTOS Integration</li>
-                <li>Device Drivers</li>
-                <li>Performance Optimization</li>
-              </ul>
-            </div>
-            
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">IoT Application Development</h3>
-              <p className="text-gray-600 mb-4">
-                End-to-end IoT solutions that connect devices, collect and analyze data,
-                and enable intelligent decision-making.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>IoT Platforms</li>
-                <li>Edge Computing</li>
-                <li>Real-time Analytics</li>
-                <li>Remote Monitoring & Control</li>
-              </ul>
-            </div>
-            
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Smart Device Integration</h3>
-              <p className="text-gray-600 mb-4">
-                Integrate smart devices with existing systems and platforms to create
-                cohesive, interconnected ecosystems.
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-600">
-                <li>Protocol Implementation</li>
-                <li>Gateway Development</li>
-                <li>Cloud Connectivity</li>
-                <li>Security Implementation</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+                  <div className="space-y-8">
+                    <ScrollFade delay={0.2}>
+                      <SpotlightCard>
+                        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                          <Shield className="h-5 w-5 text-aurora-aqua" />
+                          Our Approach
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">{service.approach}</p>
+                      </SpotlightCard>
+                    </ScrollFade>
 
-      {/* Contact Section */}
-      <section className="py-16 bg-primary-color text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Discuss Your Project?</h2>
-          <p className="text-xl max-w-2xl mx-auto mb-8">
-            Contact us today to learn how our services can help you achieve your business goals.
-          </p>
-          <Link href="/contact" className="bg-white text-primary-color font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all">
-            Get in Touch
-          </Link>
+                    <ScrollFade delay={0.3}>
+                      <SpotlightCard>
+                        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                          <Target className="h-5 w-5 text-aurora-violet" />
+                          Typical Outcomes
+                        </h3>
+                        <ul className="space-y-2">
+                          {service.outcomes.map((outcome) => (
+                            <li key={outcome} className="flex items-start gap-3">
+                              <Zap className="h-4 w-4 text-aurora-cyan flex-shrink-0 mt-1" />
+                              <span className="text-sm text-muted-foreground">{outcome}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </SpotlightCard>
+                    </ScrollFade>
+                  </div>
+                </div>
+              </div>
+            </ScrollFade>
+          </div>
+        </section>
+      ))}
+
+      {/* CTA Section */}
+      <section className="py-32">
+        <div className="container-custom">
+          <ScrollFade>
+            <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold">
+                Ready to Discuss Your Project?
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Let's talk about your technical requirements and how we can help you ship.
+              </p>
+              <div>
+                <Link href="/contact">
+                  <MagneticButton>
+                    Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
+                  </MagneticButton>
+                </Link>
+              </div>
+            </div>
+          </ScrollFade>
         </div>
       </section>
     </main>
   );
-} 
+}

@@ -2,11 +2,6 @@
 
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'Terms of Service - LuffyDesign',
-  description: 'LuffyDesign terms of service. Read our terms and conditions for using our software development services.',
-};
-
 export default function TermsOfService() {
   return (
     <main className="min-h-screen py-16">
