@@ -1,44 +1,84 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { MagneticButton } from '@/components/ui/magnetic-button';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { ScrollFade } from '@/components/ui/scroll-fade';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Code2, Cpu, Layers, Wallet } from 'lucide-react';
+import { ArrowRight, Code2, Cpu, Layers, Wallet, Zap, Shield, Network } from 'lucide-react';
+
+const LiquidEther = dynamic(() => import('@/components/ui/liquid-ether'), { ssr: false });
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Liquid Ether Background */}
+      <div className="fixed inset-0 -z-10">
+        <LiquidEther
+          colors={['#5227FF', '#00D4FF', '#B19EEF', '#FF00D6']}
+          mouseForce={25}
+          cursorSize={120}
+          isViscous={false}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo={true}
+          autoSpeed={0.6}
+          autoIntensity={2.5}
+          takeoverDuration={0.3}
+          autoResumeDelay={3500}
+          autoRampDuration={0.8}
+        />
+      </div>
+
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center px-4">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="max-w-5xl mx-auto text-center space-y-8">
             <ScrollFade>
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-                Building Products <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet via-aurora-cyan to-aurora-aqua">
-                  That Ship
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm font-medium">
+                <Zap className="h-4 w-4 text-aurora-cyan" />
+                <span>AI-Native · Blockchain-Native · Production-Ready</span>
+              </div>
+            </ScrollFade>
+
+            <ScrollFade>
+              <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold tracking-tight leading-none">
+                Engineer the{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] animate-gradient-shift">
+                  Future
                 </span>
+                <br />
+                <span className="text-5xl md:text-6xl lg:text-7xl">Ship the Present</span>
               </h1>
             </ScrollFade>
 
             <ScrollFade delay={0.2}>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance">
-                AI-powered applications, Web3 platforms, and full-stack products delivered with exceptional craft and technical clarity.
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed">
+                We architect intelligent systems, decentralized protocols, and production-grade infrastructure. From neural networks to consensus mechanisms — we execute at the edge of what's possible.
               </p>
             </ScrollFade>
 
             <ScrollFade delay={0.4}>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
                 <Link href="/contact">
-                  <MagneticButton>
-                    Start a Project <ArrowRight className="ml-2 h-4 w-4" />
+                  <MagneticButton className="group relative overflow-hidden bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] hover:shadow-[0_0_40px_rgba(82,39,255,0.6)] transition-shadow duration-300">
+                    <span className="relative z-10 flex items-center">
+                      INITIATE BUILD <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
                   </MagneticButton>
                 </Link>
                 <Link href="/case-studies">
-                  <Button variant="glass" size="lg" className="rounded-full">
-                    View Our Work
+                  <Button
+                    variant="glass"
+                    size="lg"
+                    className="rounded-full border border-white/20 hover:border-aurora-cyan/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all group"
+                  >
+                    <Shield className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
+                    PROOF OF WORK
                   </Button>
                 </Link>
               </div>
@@ -48,28 +88,35 @@ export default function Home() {
       </section>
 
       {/* Capabilities Section */}
-      <section className="py-32">
+      <section className="py-32 relative">
         <div className="container-custom">
           <ScrollFade>
             <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">What We Build</h2>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-aurora-cyan to-white">
+                  Core Protocols
+                </span>
+              </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Specialized expertise across modern technology stacks
+                Specialized execution across emergent tech frontiers
               </p>
             </div>
           </ScrollFade>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             <ScrollFade delay={0.1}>
-              <SpotlightCard className="group">
+              <SpotlightCard className="group border border-aurora-violet/20 hover:border-aurora-violet/40 transition-colors" spotlightColor="rgba(82, 39, 255, 0.25)">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-aurora-violet/10 group-hover:bg-aurora-violet/20 transition-colors">
+                  <div className="p-3 rounded-lg bg-aurora-violet/10 group-hover:bg-aurora-violet/20 transition-colors ring-1 ring-aurora-violet/30">
                     <Cpu className="h-6 w-6 text-aurora-violet" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-3">AI & LLM Applications</h3>
+                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                      Neural Architecture
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-aurora-violet/20 text-aurora-violet">AI/ML</span>
+                    </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      We architect and ship production-grade AI systems. From RAG pipelines to multi-agent orchestration, we build intelligent applications that deliver measurable outcomes.
+                      Production-grade LLM orchestration, vector databases, RAG systems, and multi-agent frameworks. We engineer intelligence at scale — from fine-tuning to inference optimization.
                     </p>
                   </div>
                 </div>
@@ -77,15 +124,18 @@ export default function Home() {
             </ScrollFade>
 
             <ScrollFade delay={0.2}>
-              <SpotlightCard className="group">
+              <SpotlightCard className="group border border-aurora-cyan/20 hover:border-aurora-cyan/40 transition-colors" spotlightColor="rgba(0, 212, 255, 0.25)">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-aurora-cyan/10 group-hover:bg-aurora-cyan/20 transition-colors">
-                    <Wallet className="h-6 w-6 text-aurora-cyan" />
+                  <div className="p-3 rounded-lg bg-aurora-cyan/10 group-hover:bg-aurora-cyan/20 transition-colors ring-1 ring-aurora-cyan/30">
+                    <Network className="h-6 w-6 text-aurora-cyan" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-3">Web3 & Blockchain Platforms</h3>
+                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                      Decentralized Systems
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-aurora-cyan/20 text-aurora-cyan">Web3</span>
+                    </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Deep expertise in wallet integration, smart contract architecture, and decentralized application development. We understand the stack from consensus to UX.
+                      Smart contract development, MEV strategies, wallet infrastructure, and dApp architecture. Deep fluency in EVM, Solana, and Layer 2 ecosystems. We ship on-chain.
                     </p>
                   </div>
                 </div>
@@ -93,15 +143,18 @@ export default function Home() {
             </ScrollFade>
 
             <ScrollFade delay={0.3}>
-              <SpotlightCard className="group">
+              <SpotlightCard className="group border border-[#FF00D6]/20 hover:border-[#FF00D6]/40 transition-colors" spotlightColor="rgba(255, 0, 214, 0.25)">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-aurora-aqua/10 group-hover:bg-aurora-aqua/20 transition-colors">
-                    <Code2 className="h-6 w-6 text-aurora-aqua" />
+                  <div className="p-3 rounded-lg bg-[#FF00D6]/10 group-hover:bg-[#FF00D6]/20 transition-colors ring-1 ring-[#FF00D6]/30">
+                    <Code2 className="h-6 w-6 text-[#FF00D6]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-3">Full-Stack Product Engineering</h3>
+                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                      Full-Stack Infrastructure
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-[#FF00D6]/20 text-[#FF00D6]">Cloud</span>
+                    </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      End-to-end execution from system architecture to shipped interfaces. We build scalable web and mobile applications with modern frameworks and deployment infrastructure.
+                      Kubernetes deployments, serverless architectures, real-time data pipelines, and edge computing. We build resilient systems that scale from prototype to unicorn.
                     </p>
                   </div>
                 </div>
@@ -109,15 +162,18 @@ export default function Home() {
             </ScrollFade>
 
             <ScrollFade delay={0.4}>
-              <SpotlightCard className="group">
+              <SpotlightCard className="group border border-aurora-violet/20 hover:border-aurora-violet/40 transition-colors" spotlightColor="rgba(168, 85, 247, 0.25)">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-aurora-violet/10 group-hover:bg-aurora-violet/20 transition-colors">
+                  <div className="p-3 rounded-lg bg-aurora-violet/10 group-hover:bg-aurora-violet/20 transition-colors ring-1 ring-aurora-violet/30">
                     <Layers className="h-6 w-6 text-aurora-violet" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-3">Design Systems & UX Architecture</h3>
+                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                      Interface Engineering
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-aurora-violet/20 text-aurora-violet">UX</span>
+                    </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Component libraries, interaction patterns, and visual systems that scale. We design for clarity, performance, and long-term maintainability.
+                      Design systems, micro-interactions, and performance optimization. Component libraries built for accessibility, internationalization, and pixel-perfect execution.
                     </p>
                   </div>
                 </div>
@@ -132,46 +188,62 @@ export default function Home() {
         <div className="container-custom">
           <ScrollFade>
             <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">How We're Different</h2>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-cyan via-[#FF00D6] to-aurora-violet">
+                  Execution Manifest
+                </span>
+              </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Strategic execution, not just engineering hours
+                Protocol-level rigor, startup-grade velocity
               </p>
             </div>
           </ScrollFade>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <ScrollFade delay={0.1}>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-semibold">Product Thinking, Not Task Completion</h3>
+              <div className="space-y-4 glass-panel p-6 rounded-xl border border-aurora-cyan/20">
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-aurora-cyan animate-pulse" />
+                  <h3 className="text-2xl font-semibold">Zero Overhead Thinking</h3>
+                </div>
                 <p className="text-muted-foreground leading-relaxed">
-                  We challenge assumptions, propose better architectures, and solve the right problems. You're getting strategic execution, not just engineering hours.
+                  We architect solutions, not task lists. Challenge assumptions, propose optimal paths, and solve root problems. Strategic engineering, not code-for-hire.
                 </p>
               </div>
             </ScrollFade>
 
             <ScrollFade delay={0.2}>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-semibold">Extreme Quality Standards</h3>
+              <div className="space-y-4 glass-panel p-6 rounded-xl border border-aurora-violet/20">
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-aurora-violet animate-pulse" />
+                  <h3 className="text-2xl font-semibold">Cryptographic Standards</h3>
+                </div>
                 <p className="text-muted-foreground leading-relaxed">
-                  Every commit is reviewed. Every component is tested. Every decision is documented. We ship code you can build on for years.
+                  Every line reviewed. Every function tested. Every deployment audited. We build with the rigor of protocol engineering — secure, deterministic, verifiable.
                 </p>
               </div>
             </ScrollFade>
 
             <ScrollFade delay={0.3}>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-semibold">Full-Stack Competence</h3>
+              <div className="space-y-4 glass-panel p-6 rounded-xl border border-[#FF00D6]/20">
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-[#FF00D6] animate-pulse" />
+                  <h3 className="text-2xl font-semibold">Vertical Integration</h3>
+                </div>
                 <p className="text-muted-foreground leading-relaxed">
-                  From database schemas to animation curves, we handle the complete product surface. No handoffs, no gaps, no excuses.
+                  Neural networks to CSS animations. Database indices to WebSocket protocols. We own the entire stack — no handoffs, no knowledge gaps, no blame games.
                 </p>
               </div>
             </ScrollFade>
 
             <ScrollFade delay={0.4}>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-semibold">Real Outcomes</h3>
+              <div className="space-y-4 glass-panel p-6 rounded-xl border border-aurora-cyan/20">
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-aurora-cyan animate-pulse" />
+                  <h3 className="text-2xl font-semibold">Proof of Performance</h3>
+                </div>
                 <p className="text-muted-foreground leading-relaxed">
-                  Deployed systems. Active users. Measurable improvements. We're accountable for production results, not just delivered features.
+                  Live systems. Real throughput. Verified uptime. We measure success in production metrics and user outcomes — not story points or Sprint velocity.
                 </p>
               </div>
             </ScrollFade>
@@ -184,23 +256,53 @@ export default function Home() {
         <div className="container-custom">
           <ScrollFade>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Technologies We Master</h2>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-aurora-violet to-white">
+                  Tech Stack
+                </span>
+              </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Modern, battle-tested tools and frameworks
+                Battle-hardened tools. Production-validated frameworks.
               </p>
             </div>
           </ScrollFade>
 
           <ScrollFade delay={0.2}>
             <div className="max-w-4xl mx-auto">
-              <div className="glass-panel p-8 rounded-2xl">
-                <div className="flex flex-wrap gap-3 justify-center">
-                  {['TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Redis', 'AWS', 'Docker', 'Kubernetes', 'Solidity', 'ethers.js', 'OpenAI API', 'LangChain', 'Pinecone', 'Anthropic Claude'].map((tech) => (
+              <div className="glass-panel p-8 rounded-2xl border border-white/10 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-aurora-violet/5 via-transparent to-aurora-cyan/5" />
+                <div className="relative flex flex-wrap gap-3 justify-center">
+                  {[
+                    { name: 'TypeScript', category: 'lang' },
+                    { name: 'Rust', category: 'lang' },
+                    { name: 'Solidity', category: 'web3' },
+                    { name: 'React', category: 'frontend' },
+                    { name: 'Next.js', category: 'frontend' },
+                    { name: 'Node.js', category: 'backend' },
+                    { name: 'Python', category: 'ai' },
+                    { name: 'FastAPI', category: 'backend' },
+                    { name: 'PostgreSQL', category: 'data' },
+                    { name: 'Redis', category: 'data' },
+                    { name: 'Pinecone', category: 'ai' },
+                    { name: 'AWS', category: 'infra' },
+                    { name: 'K8s', category: 'infra' },
+                    { name: 'ethers.js', category: 'web3' },
+                    { name: 'Hardhat', category: 'web3' },
+                    { name: 'OpenAI', category: 'ai' },
+                    { name: 'Claude', category: 'ai' },
+                    { name: 'LangChain', category: 'ai' }
+                  ].map((tech) => (
                     <span
-                      key={tech}
-                      className="px-4 py-2 rounded-full glass text-sm font-medium hover:bg-white/10 transition-colors cursor-default"
+                      key={tech.name}
+                      className={`px-4 py-2 rounded-full glass text-sm font-mono font-medium hover:bg-white/10 transition-all cursor-default border ${
+                        tech.category === 'web3'
+                          ? 'border-aurora-cyan/30 hover:border-aurora-cyan/60 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)]'
+                          : tech.category === 'ai'
+                          ? 'border-aurora-violet/30 hover:border-aurora-violet/60 hover:shadow-[0_0_15px_rgba(82,39,255,0.3)]'
+                          : 'border-white/10 hover:border-white/30'
+                      }`}
                     >
-                      {tech}
+                      {tech.name}
                     </span>
                   ))}
                 </div>
@@ -214,19 +316,40 @@ export default function Home() {
       <section className="py-32">
         <div className="container-custom">
           <ScrollFade>
-            <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold">
-                Ready to Ship Something Exceptional?
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Let's discuss your product requirements and technical architecture.
-              </p>
-              <div>
-                <Link href="/contact">
-                  <MagneticButton>
-                    Schedule a Call <ArrowRight className="ml-2 h-4 w-4" />
-                  </MagneticButton>
-                </Link>
+            <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto border border-white/10 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-aurora-violet/10 via-aurora-cyan/10 to-[#FF00D6]/10 opacity-50" />
+              <div className="relative">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm font-medium border border-aurora-cyan/30">
+                  <Zap className="h-4 w-4 text-aurora-cyan" />
+                  <span>Protocol-Level Partnership</span>
+                </div>
+                <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-aurora-cyan to-white">
+                    Execute Your Vision
+                  </span>
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+                  From protocol design to production deployment — let's architect something exceptional.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link href="/contact">
+                    <MagneticButton className="group relative overflow-hidden bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] hover:shadow-[0_0_50px_rgba(82,39,255,0.8)] transition-shadow duration-300">
+                      <span className="relative z-10 flex items-center font-semibold">
+                        DEPLOY NOW <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </MagneticButton>
+                  </Link>
+                  <Link href="/case-studies">
+                    <Button
+                      variant="glass"
+                      size="lg"
+                      className="rounded-full border border-white/20 hover:border-aurora-cyan/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all"
+                    >
+                      <Shield className="mr-2 h-4 w-4" />
+                      VERIFY TRACK RECORD
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </ScrollFade>
