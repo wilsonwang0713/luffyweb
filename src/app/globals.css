@@ -32,6 +32,10 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
 
+    /* Theme Colors - Warm & Slate */
+    --theme-warm: 30 33% 76%;
+    --theme-slate: 209 21% 35%;
+
     /* Premium Aurora Colors - Spectral accents */
     --aurora-violet: 270 91% 65%;
     --aurora-cyan: 189 94% 43%;
