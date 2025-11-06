@@ -1,213 +1,235 @@
 'use client';
 
 import Link from 'next/link';
-import CountUp from '@/components/CountUp';
+import { MagneticButton } from '@/components/ui/magnetic-button';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { ScrollFade } from '@/components/ui/scroll-fade';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Code2, Cpu, Layers, Wallet } from 'lucide-react';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="container mx-auto px-4 py-20">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">Software Development Excellence</h1>
-            <p className="text-xl mb-8">
-              We build custom software solutions that drive innovation and deliver exceptional results for businesses worldwide.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/services" className="bg-white text-primary-color font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all">
-                Our Services
-              </Link>
-              <Link href="/case-studies" className="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:bg-opacity-10 transition-all">
-                View Case Studies
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section className="relative min-h-[90vh] flex items-center justify-center px-4">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <ScrollFade>
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                Building Products <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet via-aurora-cyan to-aurora-aqua">
+                  That Ship
+                </span>
+              </h1>
+            </ScrollFade>
 
-      {/* About Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">About Luffy Design</h2>
-            <p className="text-lg text-gray-600 mb-8">
-              We are a team of passionate software engineers, designers, and product specialists dedicated to creating innovative digital solutions. With expertise across various technology domains, we help businesses transform their ideas into reality.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary-color mb-2">
-                  <CountUp to={10} />+
-                </div>
-                <p className="text-gray-600">Years of Experience</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary-color mb-2">
-                  <CountUp to={200} />+
-                </div>
-                <p className="text-gray-600">Projects Completed</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary-color mb-2">
-                  <CountUp to={50} />+
-                </div>
-                <p className="text-gray-600">Global Clients</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* R&D Units Section */}
-      <section className="py-16 bg-light-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-6">Our R&D Units</h2>
-            <p className="text-lg text-gray-600">
-              Our specialized research and development units focus on different aspects of software development to deliver comprehensive solutions.
-            </p>
-          </div>
-          
-          <div className="services-grid">
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Client Application Unit</h3>
-              <p className="text-gray-600">
-                Specializing in creating intuitive and responsive user interfaces for web and mobile applications. Our front-end experts use the latest frameworks and technologies to deliver exceptional user experiences.
+            <ScrollFade delay={0.2}>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance">
+                AI-powered applications, Web3 platforms, and full-stack products delivered with exceptional craft and technical clarity.
               </p>
-              <div className="mt-6">
-                <Link href="/services" className="text-primary-color font-medium hover:underline">
-                  Learn More →
+            </ScrollFade>
+
+            <ScrollFade delay={0.4}>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <Link href="/contact">
+                  <MagneticButton>
+                    Start a Project <ArrowRight className="ml-2 h-4 w-4" />
+                  </MagneticButton>
+                </Link>
+                <Link href="/case-studies">
+                  <Button variant="glass" size="lg" className="rounded-full">
+                    View Our Work
+                  </Button>
                 </Link>
               </div>
-            </div>
-            
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Cloud-native Services</h3>
-              <p className="text-gray-600">
-                Focused on building scalable, resilient, and secure cloud applications using microservices architecture, containerization, and serverless computing. We help businesses leverage the full potential of cloud platforms.
-              </p>
-              <div className="mt-6">
-                <Link href="/services" className="text-primary-color font-medium hover:underline">
-                  Learn More →
-                </Link>
-              </div>
-            </div>
-            
-            <div className="unit-card">
-              <h3 className="text-xl font-bold mb-4">Embedded Software & IoT</h3>
-              <p className="text-gray-600">
-                Dedicated to developing firmware and software for embedded systems and IoT devices. Our team has expertise in creating solutions for various industries, from consumer electronics to industrial automation.
-              </p>
-              <div className="mt-6">
-                <Link href="/services" className="text-primary-color font-medium hover:underline">
-                  Learn More →
-                </Link>
-              </div>
-            </div>
+            </ScrollFade>
           </div>
         </div>
       </section>
 
-      {/* Partner Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-6">Your Trusted Partner</h2>
-            <p className="text-lg text-gray-600">
-              At Luffy Design, we don't just build software; we build lasting partnerships. Our collaborative approach ensures that we understand your business goals and deliver solutions that help you achieve them.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4">Client-Centric Approach</h3>
-              <p className="text-gray-600">
-                We put your needs first, working closely with you at every stage of the project to ensure that the final product meets your expectations and delivers real value.
+      {/* Capabilities Section */}
+      <section className="py-32">
+        <div className="container-custom">
+          <ScrollFade>
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">What We Build</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Specialized expertise across modern technology stacks
               </p>
             </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4">Technical Excellence</h3>
-              <p className="text-gray-600">
-                Our team stays at the forefront of technology, continuously learning and adopting new tools and methodologies to deliver high-quality, future-proof solutions.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4">Agile Development</h3>
-              <p className="text-gray-600">
-                We follow agile development practices, allowing for flexibility, transparency, and regular feedback throughout the project lifecycle.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4">Long-term Support</h3>
-              <p className="text-gray-600">
-                Our relationship doesn't end with project delivery. We provide ongoing support and maintenance to ensure your software continues to perform optimally.
-              </p>
-            </div>
+          </ScrollFade>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            <ScrollFade delay={0.1}>
+              <SpotlightCard className="group">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-aurora-violet/10 group-hover:bg-aurora-violet/20 transition-colors">
+                    <Cpu className="h-6 w-6 text-aurora-violet" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-3">AI & LLM Applications</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      We architect and ship production-grade AI systems. From RAG pipelines to multi-agent orchestration, we build intelligent applications that deliver measurable outcomes.
+                    </p>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </ScrollFade>
+
+            <ScrollFade delay={0.2}>
+              <SpotlightCard className="group">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-aurora-cyan/10 group-hover:bg-aurora-cyan/20 transition-colors">
+                    <Wallet className="h-6 w-6 text-aurora-cyan" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-3">Web3 & Blockchain Platforms</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Deep expertise in wallet integration, smart contract architecture, and decentralized application development. We understand the stack from consensus to UX.
+                    </p>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </ScrollFade>
+
+            <ScrollFade delay={0.3}>
+              <SpotlightCard className="group">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-aurora-aqua/10 group-hover:bg-aurora-aqua/20 transition-colors">
+                    <Code2 className="h-6 w-6 text-aurora-aqua" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-3">Full-Stack Product Engineering</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      End-to-end execution from system architecture to shipped interfaces. We build scalable web and mobile applications with modern frameworks and deployment infrastructure.
+                    </p>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </ScrollFade>
+
+            <ScrollFade delay={0.4}>
+              <SpotlightCard className="group">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-aurora-violet/10 group-hover:bg-aurora-violet/20 transition-colors">
+                    <Layers className="h-6 w-6 text-aurora-violet" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-3">Design Systems & UX Architecture</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Component libraries, interaction patterns, and visual systems that scale. We design for clarity, performance, and long-term maintainability.
+                    </p>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </ScrollFade>
           </div>
         </div>
       </section>
 
-      {/* Services Overview Section */}
-      <section className="py-16 bg-light-background">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Our Services</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-            We offer a comprehensive range of software development services tailored to meet your specific business needs.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4">Custom Software Development</h3>
-              <p className="text-gray-600 mb-4">
-                Tailored solutions designed to address your unique business challenges and requirements.
+      {/* Why Choose Us Section */}
+      <section className="py-32 relative">
+        <div className="container-custom">
+          <ScrollFade>
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">How We're Different</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Strategic execution, not just engineering hours
               </p>
-              <Link href="/services" className="text-primary-color font-medium hover:underline">
-                Learn More →
-              </Link>
             </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4">Cloud Services</h3>
-              <p className="text-gray-600 mb-4">
-                Scalable and secure cloud solutions that help you leverage the full potential of cloud computing.
-              </p>
-              <Link href="/services" className="text-primary-color font-medium hover:underline">
-                Learn More →
-              </Link>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4">IoT & Embedded Systems</h3>
-              <p className="text-gray-600 mb-4">
-                Innovative solutions for connected devices and embedded systems across various industries.
-              </p>
-              <Link href="/services" className="text-primary-color font-medium hover:underline">
-                Learn More →
-              </Link>
-            </div>
+          </ScrollFade>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <ScrollFade delay={0.1}>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold">Product Thinking, Not Task Completion</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We challenge assumptions, propose better architectures, and solve the right problems. You're getting strategic execution, not just engineering hours.
+                </p>
+              </div>
+            </ScrollFade>
+
+            <ScrollFade delay={0.2}>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold">Extreme Quality Standards</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Every commit is reviewed. Every component is tested. Every decision is documented. We ship code you can build on for years.
+                </p>
+              </div>
+            </ScrollFade>
+
+            <ScrollFade delay={0.3}>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold">Full-Stack Competence</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  From database schemas to animation curves, we handle the complete product surface. No handoffs, no gaps, no excuses.
+                </p>
+              </div>
+            </ScrollFade>
+
+            <ScrollFade delay={0.4}>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold">Real Outcomes</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Deployed systems. Active users. Measurable improvements. We're accountable for production results, not just delivered features.
+                </p>
+              </div>
+            </ScrollFade>
           </div>
-          
-          <div className="mt-12">
-            <Link href="/services" className="bg-primary-color text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all">
-              View All Services
-            </Link>
-          </div>
+        </div>
+      </section>
+
+      {/* Technologies Section */}
+      <section className="py-32">
+        <div className="container-custom">
+          <ScrollFade>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Technologies We Master</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Modern, battle-tested tools and frameworks
+              </p>
+            </div>
+          </ScrollFade>
+
+          <ScrollFade delay={0.2}>
+            <div className="max-w-4xl mx-auto">
+              <div className="glass-panel p-8 rounded-2xl">
+                <div className="flex flex-wrap gap-3 justify-center">
+                  {['TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Redis', 'AWS', 'Docker', 'Kubernetes', 'Solidity', 'ethers.js', 'OpenAI API', 'LangChain', 'Pinecone', 'Anthropic Claude'].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-4 py-2 rounded-full glass text-sm font-medium hover:bg-white/10 transition-colors cursor-default"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollFade>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary-color text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Start Your Project?</h2>
-          <p className="text-xl max-w-2xl mx-auto mb-8">
-            Contact us today to discuss how we can help you achieve your business goals with custom software solutions.
-          </p>
-          <Link href="/contact" className="bg-white text-primary-color font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all">
-            Get in Touch
-          </Link>
+      <section className="py-32">
+        <div className="container-custom">
+          <ScrollFade>
+            <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold">
+                Ready to Ship Something Exceptional?
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Let's discuss your product requirements and technical architecture.
+              </p>
+              <div>
+                <Link href="/contact">
+                  <MagneticButton>
+                    Schedule a Call <ArrowRight className="ml-2 h-4 w-4" />
+                  </MagneticButton>
+                </Link>
+              </div>
+            </div>
+          </ScrollFade>
         </div>
       </section>
     </main>

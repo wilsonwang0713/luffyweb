@@ -2,11 +2,6 @@
 
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'Privacy Policy - LuffyDesign',
-  description: 'LuffyDesign privacy policy. Learn how we collect, use, and protect your personal information.',
-};
-
 export default function PrivacyPolicy() {
   return (
     <main className="min-h-screen py-16">

@@ -1,146 +1,200 @@
 'use client';
 
+import { ScrollFade } from '@/components/ui/scroll-fade';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { MagneticButton } from '@/components/ui/magnetic-button';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'Case Studies - LuffyDesign',
-  description: 'Explore our successful software development projects and case studies. Learn how we helped businesses transform with custom solutions.',
-};
+import { ArrowRight, TrendingUp, Users, Zap, Shield } from 'lucide-react';
 
 export default function CaseStudies() {
+  const caseStudies = [
+    {
+      title: 'AI Contract Analyzer',
+      category: 'AI/LLM Application',
+      client: 'Enterprise legal tech startup',
+      challenge: 'Manual contract review taking 4-6 hours per document',
+      solution: 'Built an LLM-based analysis system with custom fine-tuning for legal language, automatic clause extraction, risk scoring, and comparison tools.',
+      results: [
+        { metric: 'Review time reduced', value: 'From 4 hours to 12 minutes' },
+        { metric: 'Accuracy', value: '94% on clause identification' },
+        { metric: 'Processing volume', value: '10,000+ contracts/month' },
+        { metric: 'Cost savings', value: '$2M annually' },
+      ],
+      tech: ['Python', 'FastAPI', 'OpenAI GPT-4', 'Pinecone', 'React', 'PostgreSQL'],
+      color: 'aurora-violet',
+    },
+    {
+      title: 'Multi-Chain Wallet',
+      category: 'Web3 Platform',
+      client: 'Web3 infrastructure company',
+      challenge: 'Users frustrated by single-chain wallets; high friction in DeFi interactions',
+      solution: 'Designed and built a unified wallet supporting 8 blockchains with cross-chain swaps, hardware wallet integration, and best-in-class UX.',
+      results: [
+        { metric: 'Monthly active users', value: '50,000 within 6 months' },
+        { metric: 'Security incidents', value: 'Zero fund losses' },
+        { metric: 'App Store rating', value: '4.8/5.0' },
+        { metric: 'Media coverage', value: 'Featured by major crypto publications' },
+      ],
+      tech: ['TypeScript', 'React Native', 'ethers.js', 'WalletConnect', 'Cosmos SDK', 'Solana Web3.js'],
+      color: 'aurora-cyan',
+    },
+    {
+      title: 'Real-Time Trading Dashboard',
+      category: 'Full-Stack Platform',
+      client: 'Quantitative trading firm',
+      challenge: 'Existing dashboard could not handle market data velocity; frequent crashes',
+      solution: 'Rebuilt the entire frontend with optimized state management, WebSocket pooling, and canvas-based rendering for charts.',
+      results: [
+        { metric: 'Price updates handled', value: '500+/second smoothly' },
+        { metric: 'Average render time', value: '98ms (was 800ms+)' },
+        { metric: 'Uptime', value: 'Zero crashes in 6 months' },
+        { metric: 'Decision speed', value: '30% faster reported by traders' },
+      ],
+      tech: ['React', 'TypeScript', 'WebSocket', 'D3.js', 'TanStack Query', 'Redis'],
+      color: 'aurora-aqua',
+    },
+    {
+      title: 'Enterprise Design System',
+      category: 'Design System',
+      client: 'B2B enterprise SaaS (50+ engineers)',
+      challenge: 'Inconsistent UI across product; slow feature development; accessibility gaps',
+      solution: 'Built a comprehensive design system with 80+ components, design tokens, Storybook documentation, and automated accessibility testing.',
+      results: [
+        { metric: 'Development velocity', value: '55% increase' },
+        { metric: 'Accessibility score', value: '95+ (was 72)' },
+        { metric: 'QA bugs reduced', value: '40% fewer' },
+        { metric: 'Team adoption', value: '12 product teams' },
+      ],
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Radix UI', 'Storybook', 'Chromatic'],
+      color: 'aurora-violet',
+    },
+  ];
+
   return (
     <main className="min-h-screen">
-      {/* Header Section */}
-      <section className="bg-gradient-to-r from-primary-color to-secondary-color text-white py-20">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-6">Our Case Studies</h1>
-          <p className="text-xl max-w-2xl">
-            Explore our portfolio of successful projects and discover how we've helped businesses
-            transform their operations with custom software solutions.
-          </p>
+      {/* Hero Section */}
+      <section className="py-32 px-4">
+        <div className="container-custom">
+          <ScrollFade>
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold">
+                Proven <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet to-aurora-cyan">Results</span>
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Real projects. Measurable outcomes. Production systems serving thousands of users.
+              </p>
+            </div>
+          </ScrollFade>
         </div>
       </section>
 
-      {/* Case Studies Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="case-studies-grid">
-            {/* Case Study 1 */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 bg-gray-200"></div>
-              <div className="p-6">
-                <span className="text-sm text-primary-color font-medium">Healthcare</span>
-                <h3 className="text-xl font-bold mt-2 mb-3">Patient Management System</h3>
-                <p className="text-gray-600 mb-4">
-                  Developed a comprehensive patient management system for a leading healthcare provider,
-                  resulting in 40% improved operational efficiency.
-                </p>
-                <Link href="/case-studies/patient-management-system" className="text-primary-color font-medium hover:underline">
-                  Read Case Study →
-                </Link>
-              </div>
-            </div>
+      {/* Case Studies */}
+      <section className="pb-32">
+        <div className="container-custom">
+          <div className="space-y-32">
+            {caseStudies.map((study, index) => (
+              <ScrollFade key={study.title} delay={0}>
+                <div className="max-w-6xl mx-auto">
+                  <div className="mb-8">
+                    <span className="text-sm font-medium text-aurora-cyan">{study.category}</span>
+                    <h2 className="text-4xl font-bold mt-2 mb-4">{study.title}</h2>
+                    <p className="text-muted-foreground">
+                      <span className="font-medium text-foreground">Client:</span> {study.client}
+                    </p>
+                  </div>
 
-            {/* Case Study 2 */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 bg-gray-200"></div>
-              <div className="p-6">
-                <span className="text-sm text-primary-color font-medium">Fintech</span>
-                <h3 className="text-xl font-bold mt-2 mb-3">Secure Payment Gateway</h3>
-                <p className="text-gray-600 mb-4">
-                  Built a secure, scalable payment processing system handling over 10,000 transactions
-                  per minute with 99.99% uptime.
-                </p>
-                <Link href="/case-studies/payment-gateway" className="text-primary-color font-medium hover:underline">
-                  Read Case Study →
-                </Link>
-              </div>
-            </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-6">
+                      <SpotlightCard>
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2 text-aurora-violet">
+                            <Shield className="h-5 w-5" />
+                            <h3 className="font-semibold">Challenge</h3>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed">{study.challenge}</p>
+                        </div>
+                      </SpotlightCard>
 
-            {/* Case Study 3 */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 bg-gray-200"></div>
-              <div className="p-6">
-                <span className="text-sm text-primary-color font-medium">IoT</span>
-                <h3 className="text-xl font-bold mt-2 mb-3">Smart Factory Monitoring</h3>
-                <p className="text-gray-600 mb-4">
-                  Implemented an IoT solution for real-time factory monitoring, reducing downtime by 35%
-                  and increasing production efficiency.
-                </p>
-                <Link href="/case-studies/smart-factory" className="text-primary-color font-medium hover:underline">
-                  Read Case Study →
-                </Link>
-              </div>
-            </div>
+                      <SpotlightCard>
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2 text-aurora-cyan">
+                            <Zap className="h-5 w-5" />
+                            <h3 className="font-semibold">Solution</h3>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed">{study.solution}</p>
+                        </div>
+                      </SpotlightCard>
 
-            {/* Case Study 4 */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 bg-gray-200"></div>
-              <div className="p-6">
-                <span className="text-sm text-primary-color font-medium">E-commerce</span>
-                <h3 className="text-xl font-bold mt-2 mb-3">Omnichannel Retail Platform</h3>
-                <p className="text-gray-600 mb-4">
-                  Designed and developed an omnichannel retail solution that increased online sales by 150%
-                  and improved customer retention.
-                </p>
-                <Link href="/case-studies/omnichannel-retail" className="text-primary-color font-medium hover:underline">
-                  Read Case Study →
-                </Link>
-              </div>
-            </div>
+                      <SpotlightCard>
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2 text-aurora-aqua">
+                            <TrendingUp className="h-5 w-5" />
+                            <h3 className="font-semibold">Tech Stack</h3>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {study.tech.map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-3 py-1 rounded-full glass text-xs font-medium"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </SpotlightCard>
+                    </div>
+
+                    <div>
+                      <SpotlightCard className="h-full">
+                        <div className="space-y-6">
+                          <div className="flex items-center gap-2 text-aurora-violet">
+                            <TrendingUp className="h-5 w-5" />
+                            <h3 className="font-semibold">Results</h3>
+                          </div>
+                          <div className="space-y-6">
+                            {study.results.map((result) => (
+                              <div key={result.metric} className="space-y-2">
+                                <div className="text-3xl font-bold text-foreground">
+                                  {result.value}
+                                </div>
+                                <div className="text-sm text-muted-foreground">{result.metric}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </SpotlightCard>
+                    </div>
+                  </div>
+                </div>
+              </ScrollFade>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 bg-light-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="testimonial-card">
-              <p className="text-lg italic mb-6">
-                "LuffyDesign transformed our business with their custom software solution. Their team was professional,
-                responsive, and delivered exactly what we needed. The ROI has been exceptional."
+      {/* CTA Section */}
+      <section className="py-32">
+        <div className="container-custom">
+          <ScrollFade>
+            <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold">
+                Ready to Build Your Success Story?
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Let's discuss how we can help your business achieve similar results.
               </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
-                <div>
-                  <h4 className="font-bold">Sarah Johnson</h4>
-                  <p className="text-sm text-gray-600">CTO, HealthTech Innovations</p>
-                </div>
+              <div>
+                <Link href="/contact">
+                  <MagneticButton>
+                    Start a Project <ArrowRight className="ml-2 h-4 w-4" />
+                  </MagneticButton>
+                </Link>
               </div>
             </div>
-            
-            <div className="testimonial-card">
-              <p className="text-lg italic mb-6">
-                "Working with LuffyDesign was a game-changer for our startup. They understood our vision and
-                built a scalable platform that has supported our growth from 100 to 100,000 users."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
-                <div>
-                  <h4 className="font-bold">Michael Chen</h4>
-                  <p className="text-sm text-gray-600">Founder, TechStart</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-16 bg-primary-color text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Build Your Success Story?</h2>
-          <p className="text-xl max-w-2xl mx-auto mb-8">
-            Let's discuss how we can help your business achieve its goals with custom software solutions.
-          </p>
-          <Link href="/contact" className="bg-white text-primary-color font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all">
-            Contact Us Today
-          </Link>
+          </ScrollFade>
         </div>
       </section>
     </main>
   );
-} 
+}

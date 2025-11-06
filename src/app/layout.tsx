@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import MobileMenuToggle from './components/MobileMenuToggle';
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+import { FluidBackground } from "@/components/ui/fluid-background";
 
 export const metadata: Metadata = {
-  title: "LuffyDesign - Software Development Excellence",
-  description: "LuffyDesign offers custom software development services including web, mobile, cloud, and embedded solutions.",
+  title: "LuffyDesign - Building Products That Ship",
+  description: "AI-powered applications, Web3 platforms, and full-stack products delivered with exceptional craft and technical clarity.",
 };
 
 export default function RootLayout({
@@ -20,79 +14,87 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable}`}>
-        <header>
-          <div className="container header-container">
-            <div className="logo">
-              <Link href="/">Luffy<span>Design</span></Link>
-            </div>
-            <MobileMenuToggle />
-            <nav>
-              <ul>
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/services">Services</Link></li>
-                <li><Link href="/case-studies">Case Studies</Link></li>
-                <li><Link href="/privacy-policy">Privacy Policy</Link></li>
-                <li><Link href="/terms-of-service">Terms of Service</Link></li>
-              </ul>
+    <html lang="en" className="dark">
+      <body className="antialiased font-sans">
+        <FluidBackground />
+
+        {/* Header */}
+        <header className="fixed top-0 z-50 w-full glass-panel border-b border-white/10">
+          <div className="container-custom flex h-16 items-center justify-between">
+            <Link href="/" className="text-xl font-bold tracking-tight">
+              Luffy<span className="text-aurora-violet">Design</span>
+            </Link>
+
+            <nav className="hidden md:flex items-center gap-8">
+              <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Home
+              </Link>
+              <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                About
+              </Link>
+              <Link href="/services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Services
+              </Link>
+              <Link href="/case-studies" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Case Studies
+              </Link>
+              <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Contact
+              </Link>
             </nav>
           </div>
         </header>
 
-        <main>{children}</main>
+        <main className="pt-16">{children}</main>
 
-        <footer>
-          <div className="container">
-            <div className="footer-container">
-              <div className="footer-col">
-                <h3>LuffyDesign</h3>
-                <p>Delivering software development excellence for businesses of all sizes.</p>
+        {/* Footer */}
+        <footer className="border-t border-white/10 mt-32">
+          <div className="container-custom py-16">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+              <div>
+                <div className="text-xl font-bold mb-4">
+                  Luffy<span className="text-aurora-violet">Design</span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Building AI-powered applications, Web3 platforms, and full-stack products with exceptional quality.
+                </p>
               </div>
-              <div className="footer-col">
-                <h3>Services</h3>
-                <ul>
-                  <li><Link href="/services">Custom Software Development</Link></li>
-                  <li><Link href="/services">Web & Mobile Applications</Link></li>
-                  <li><Link href="/services">Cloud Services</Link></li>
-                  <li><Link href="/services">Embedded Software & IoT</Link></li>
+
+              <div>
+                <h3 className="font-semibold mb-4">Services</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li><Link href="/services#ai" className="hover:text-foreground transition-colors">AI Software Outsourcing</Link></li>
+                  <li><Link href="/services#web3" className="hover:text-foreground transition-colors">Blockchain & Wallet Integrations</Link></li>
+                  <li><Link href="/services#design" className="hover:text-foreground transition-colors">Design Systems & UX</Link></li>
+                  <li><Link href="/services#fullstack" className="hover:text-foreground transition-colors">Full-Stack Engineering</Link></li>
                 </ul>
               </div>
-              <div className="footer-col">
-                <h3>Company</h3>
-                <ul>
-                  <li><Link href="/case-studies">Case Studies</Link></li>
-                  <li><Link href="/privacy-policy">Privacy Policy</Link></li>
-                  <li><Link href="/terms-of-service">Terms of Service</Link></li>
+
+              <div>
+                <h3 className="font-semibold mb-4">Company</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li><Link href="/about" className="hover:text-foreground transition-colors">About</Link></li>
+                  <li><Link href="/case-studies" className="hover:text-foreground transition-colors">Case Studies</Link></li>
+                  <li><Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link></li>
                 </ul>
               </div>
-              <div className="footer-col">
-                <h3>Contact</h3>
-                <p>123 Tech Street<br />San Francisco, CA 94105</p>
-                <p>Email: info@luffydesign.com<br />Phone: (123) 456-7890</p>
+
+              <div>
+                <h3 className="font-semibold mb-4">Legal</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li><Link href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="/terms-of-service" className="hover:text-foreground transition-colors">Terms of Service</Link></li>
+                </ul>
               </div>
             </div>
-            <div className="copyright">
-              <p>&copy; {new Date().getFullYear()} LuffyDesign. All rights reserved.</p>
+
+            <div className="pt-8 border-t border-white/10">
+              <p className="text-center text-sm text-muted-foreground">
+                © {new Date().getFullYear()} LuffyDesign. All rights reserved.
+              </p>
             </div>
           </div>
         </footer>
-
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            document.addEventListener('DOMContentLoaded', function() {
-              const menuToggle = document.querySelector('.menu-toggle');
-              const navMenu = document.querySelector('nav');
-              
-              if (menuToggle && navMenu) {
-                menuToggle.addEventListener('click', function() {
-                  navMenu.classList.toggle('active');
-                  menuToggle.classList.toggle('active');
-                });
-              }
-            });
-          `
-        }} />
       </body>
     </html>
   );
