@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 const Orb = dynamic(() => import('@/components/ui/orb'), { ssr: false });
 
@@ -36,29 +37,32 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Simple Button */}
+        {/* Arrow Button */}
         <motion.button
           onClick={handleStart}
           disabled={isStarting}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.2, x: 10 }}
           whileTap={{ scale: 0.9 }}
           className={`
-            w-20 h-20 rounded-full
+            flex items-center justify-center
+            w-16 h-16 rounded-full
             bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6]
             hover:shadow-[0_0_50px_rgba(82,39,255,0.8)]
             transition-all duration-300
             ${isStarting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
           `}
         >
-          {isStarting && (
+          {isStarting ? (
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              className="w-full h-full rounded-full border-4 border-white border-t-transparent"
+              className="w-8 h-8 border-3 border-white border-t-transparent rounded-full"
             />
+          ) : (
+            <ArrowRight className="w-8 h-8 text-white" />
           )}
         </motion.button>
       </div>
