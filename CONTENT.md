@@ -109,7 +109,7 @@ Deployment runbooks. Monitoring dashboards. Incident response protocols. We stay
 ### Core Principles
 
 **Technical Excellence**
-We stay at the edge of the industry. New frameworks, new patterns, new tools—evaluated rigorously and adopted strategically.
+We stay at the edge of the industry. New frameworks, new patterns, new tools--evaluated rigorously and adopted strategically.
 
 **Radical Clarity**
 No bullshit. No padding. No theater. Clear communication about what's possible, what's expensive, and what's worth building.
@@ -275,9 +275,9 @@ Modern frameworks. Battle-tested patterns. Observability from day one. We ship f
 We work with companies that value craft, speed, and technical rigor. If you're ready to ship a real product, let's talk.
 
 **What Happens Next**:
-1. **Technical Discovery Call** (30 min) — We discuss your requirements, technical constraints, and success metrics
-2. **Architecture Proposal** (3-5 days) — Detailed technical approach, timeline, and fixed-price or milestone-based estimate
-3. **Kick-off & Execution** — Weekly sprints with deployed increments and continuous feedback
+1. **Technical Discovery Call** (30 min) -- We discuss your requirements, technical constraints, and success metrics
+2. **Architecture Proposal** (3-5 days) -- Detailed technical approach, timeline, and fixed-price or milestone-based estimate
+3. **Kick-off & Execution** -- Weekly sprints with deployed increments and continuous feedback
 
 ### Contact Form Fields
 - Name

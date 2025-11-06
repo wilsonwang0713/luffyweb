@@ -21,7 +21,7 @@ export default function Services() {
         'AI model integration and inference optimization',
         'Conversational AI and chatbot platforms',
       ],
-      approach: 'We don't just wire up APIs. We architect systems that deliver consistent results at scale. Prompt engineering, context management, fallback strategies, and cost optimization built in from day one.',
+      approach: "We don't just wire up APIs. We architect systems that deliver consistent results at scale. Prompt engineering, context management, fallback strategies, and cost optimization built in from day one.",
       outcomes: [
         '60-80% reduction in manual processing time',
         'Sub-2s response times for complex AI queries',
@@ -119,8 +119,8 @@ export default function Services() {
             <ScrollFade>
               <div className="max-w-6xl mx-auto">
                 <div className="flex items-start gap-6 mb-12">
-                  <div className={`p-4 rounded-xl bg-${service.color}/10`}>
-                    <service.icon className={`h-10 w-10 text-${service.color}`} />
+                  <div className={'p-4 rounded-xl bg-${service.color}/10'}>
+                    <service.icon className={'h-10 w-10 text-${service.color}'} />
                   </div>
                   <div className="flex-1">
                     <h2 className="text-4xl font-bold mb-4">{service.title}</h2>

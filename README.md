@@ -1,62 +1,85 @@
 # LuffyDesign Website
 
-A professional website for LuffyDesign, a software development service company that helps businesses expand their engineering capabilities and develop successful software products.
+A premium, futuristic website for LuffyDesign featuring Fluid Glass + Shape Blur aesthetics.
 
-## Overview
+## Tech Stack
 
-This website consists of five main pages:
+- **Framework**: Next.js 14 with TypeScript
+- **Styling**: Tailwind CSS 3 with custom design tokens
+- **Animations**: Framer Motion
+- **Components**: shadcn/ui + custom UI library
+- **Icons**: Lucide React
 
-1. **Home** - Introduction to LuffyDesign and overview of services
-2. **Services** - Detailed information about the services offered
-3. **Case Studies** - Portfolio of successful projects
-4. **Privacy Policy** - Legal information about data collection and usage
-5. **Terms of Service** - Legal terms and conditions for using the website and services
+## Design System
 
-## Technologies Used
+### Visual Style
+- **Aesthetic**: Futuristic, premium, AI-native, blockchain-literate
+- **Color Palette**: Deep Black (#0a0a0f) with Aurora accents (Violet, Cyan, Aqua)
+- **UI Pattern**: Fluid Glass morphism with animated gradient backgrounds
+- **Typography**: Modern sans-serif with precise scaling
+- **Interactions**: Smooth, purposeful animations with magnetic buttons and spotlight cards
 
-- HTML5
-- CSS3
-- JavaScript (vanilla)
-- Responsive design for all device sizes
+### Key Features
+- Animated fluid background with organic gradient blobs
+- Glass morphism UI components with backdrop blur
+- Interactive components (MagneticButton, SpotlightCard)
+- Scroll-triggered reveal animations
+- Fully responsive design
 
-## File Structure
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+## Project Structure
 
 ```
-luffyweb/
-├── index.html              # Home page
-├── services.html           # Services page
-├── case-studies.html       # Case Studies page
-├── privacy-policy.html     # Privacy Policy page
-├── terms-of-service.html   # Terms of Service page
-├── css/
-│   └── styles.css          # Main stylesheet
-├── js/
-│   └── main.js             # JavaScript functionality
-└── images/                 # Directory for images
+src/
+├── app/                      # Next.js app directory
+│   ├── layout.tsx           # Root layout with header/footer
+│   ├── page.tsx             # Home page
+│   ├── about/               # About page
+│   ├── services/            # Services page
+│   ├── case-studies/        # Case studies page
+│   └── contact/             # Contact form
+├── components/
+│   └── ui/                  # Custom UI components
+│       ├── fluid-background.tsx
+│       ├── magnetic-button.tsx
+│       ├── spotlight-card.tsx
+│       ├── scroll-fade.tsx
+│       └── button.tsx
+└── lib/
+    └── utils.ts             # Utility functions
 ```
 
-## Setup and Deployment
+## Content Strategy
 
-This is a static website that can be deployed on any web server or hosting service. Simply upload all files to your web server's public directory.
+See `CONTENT.md` for complete content strategy and messaging.
 
-### Local Development
+See `DELIVERABLES.md` for technical documentation and implementation details.
 
-To run the website locally:
+## Deployment
 
-1. Clone this repository
-2. Open `index.html` in your web browser
+This project is optimized for deployment on Vercel:
 
-## Customization
+1. Connect your repository to Vercel
+2. Vercel will automatically detect Next.js and configure build settings
+3. Deploy!
 
-To customize the website:
+The build output is static and can also be deployed to any static hosting provider.
 
-- Edit the HTML files to update content
-- Modify `css/styles.css` to change the styling
-- Update `js/main.js` for custom functionality
-- Add your own images to the `images/` directory
+## License
 
-## Contact
-
-For questions or support, please contact:
-- Email: info@luffydesign.com
-- Phone: +1 (123) 456-7890
+© 2025 LuffyDesign. All rights reserved.

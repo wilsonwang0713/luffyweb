@@ -50,7 +50,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
         className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-500"
         style={{
           opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`,
+          background: 'radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)',
         }}
       />
       <div className="relative z-10">{children}</div>

@@ -106,7 +106,7 @@ export default function About() {
               },
               {
                 title: 'Radical Clarity',
-                description: 'No bullshit. No padding. No theater. Clear communication about what's possible, what's expensive, and what's worth building.',
+                description: "No bullshit. No padding. No theater. Clear communication about what's possible, what's expensive, and what's worth building.",
               },
               {
                 title: 'Long-Term Thinking',
