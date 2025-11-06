@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0f]">
       {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#1a0a2e] to-[#0a0a0f] opacity-60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#1a1512] to-[#0a0a0f] opacity-60" />
 
       {/* Noise texture overlay */}
       <div className="absolute inset-0 noise-texture opacity-20" />
@@ -31,8 +31,8 @@ export default function Home() {
         className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(82, 39, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(82, 39, 255, 0.1) 1px, transparent 1px)
+            linear-gradient(rgba(71, 90, 108, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(71, 90, 108, 0.1) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px'
         }}
@@ -49,7 +49,7 @@ export default function Home() {
           >
             <div className="absolute inset-0">
               <Orb
-                hue={260}
+                hue={30}
                 hoverIntensity={0.3}
                 rotateOnHover={true}
                 forceHoverState={false}
@@ -57,7 +57,7 @@ export default function Home() {
             </div>
 
             {/* Orb glow effect */}
-            <div className="absolute inset-0 blur-3xl opacity-30 bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] pointer-events-none" />
+            <div className="absolute inset-0 blur-3xl opacity-20 bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm pointer-events-none" />
           </motion.div>
 
           {/* Right: Content */}
@@ -74,16 +74,16 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-wrap gap-3 justify-center lg:justify-start"
             >
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-aurora-violet/30">
-                <Zap className="h-4 w-4 text-aurora-violet" />
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-theme-warm/30">
+                <Zap className="h-4 w-4 text-theme-warm" />
                 <span className="text-sm font-mono">SYSTEM ONLINE</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-aurora-cyan/30">
-                <Lock className="h-4 w-4 text-aurora-cyan" />
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-theme-slate/30">
+                <Lock className="h-4 w-4 text-theme-slate" />
                 <span className="text-sm font-mono">SECURE</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#FF00D6]/30">
-                <Database className="h-4 w-4 text-[#FF00D6]" />
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-theme-warm/30">
+                <Database className="h-4 w-4 text-theme-warm" />
                 <span className="text-sm font-mono">DECENTRALIZED</span>
               </div>
             </motion.div>
@@ -96,11 +96,11 @@ export default function Home() {
               className="space-y-4"
             >
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-aurora-cyan to-white animate-gradient-shift">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-theme-warm to-white animate-gradient-shift">
                   Initialize
                 </span>
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet via-[#FF00D6] to-aurora-cyan">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-slate via-theme-warm to-theme-slate">
                   Protocol
                 </span>
               </h1>
@@ -122,16 +122,16 @@ export default function Home() {
                 <span className="text-green-400">&gt; System Status: READY</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-aurora-cyan" />
-                <span className="text-aurora-cyan">&gt; Neural Networks: ACTIVE</span>
+                <div className="h-2 w-2 rounded-full bg-theme-slate" />
+                <span className="text-theme-slate">&gt; Neural Networks: ACTIVE</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-aurora-violet" />
-                <span className="text-aurora-violet">&gt; Blockchain Nodes: SYNCED</span>
+                <div className="h-2 w-2 rounded-full bg-theme-warm" />
+                <span className="text-theme-warm">&gt; Blockchain Nodes: SYNCED</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-[#FF00D6]" />
-                <span className="text-[#FF00D6]">&gt; Deployment Pipeline: STANDBY</span>
+                <div className="h-2 w-2 rounded-full bg-theme-slate" />
+                <span className="text-theme-slate">&gt; Deployment Pipeline: STANDBY</span>
               </div>
             </motion.div>
 
@@ -149,8 +149,8 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className={`
                   group relative overflow-hidden px-12 py-5 rounded-full font-bold text-lg
-                  bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6]
-                  hover:shadow-[0_0_50px_rgba(82,39,255,0.8)]
+                  bg-gradient-to-r from-theme-slate via-theme-warm to-theme-slate
+                  hover:shadow-[0_0_50px_rgba(71,90,108,0.6)]
                   transition-all duration-300
                   ${isStarting ? 'opacity-50 cursor-not-allowed' : ''}
                 `}
@@ -186,8 +186,8 @@ export default function Home() {
                 className="
                   group px-8 py-4 rounded-full font-medium
                   glass border border-white/20
-                  hover:border-aurora-cyan/50
-                  hover:shadow-[0_0_20px_rgba(0,212,255,0.3)]
+                  hover:border-theme-warm/50
+                  hover:shadow-[0_0_20px_rgba(214,195,176,0.3)]
                   transition-all
                 "
               >
@@ -212,11 +212,11 @@ export default function Home() {
       </div>
 
       {/* Bottom decorative elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-aurora-cyan to-transparent opacity-30" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-theme-slate to-transparent opacity-30" />
 
       {/* Corner accents */}
-      <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-aurora-violet/20 rounded-tl-3xl" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-aurora-cyan/20 rounded-br-3xl" />
+      <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-theme-warm/20 rounded-tl-3xl" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-theme-slate/20 rounded-br-3xl" />
     </main>
   );
 }

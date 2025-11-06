@@ -49,7 +49,12 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Premium aurora colors
+        // Theme colors
+        theme: {
+          warm: "hsl(var(--theme-warm))",
+          slate: "hsl(var(--theme-slate))",
+        },
+        // Premium aurora colors (legacy)
         aurora: {
           violet: "hsl(var(--aurora-violet))",
           cyan: "hsl(var(--aurora-cyan))",
