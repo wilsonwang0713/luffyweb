@@ -13,34 +13,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {/* Header */}
-      <header className="fixed top-0 z-50 w-full glass-panel border-b border-white/10">
-        <div className="container-custom flex h-16 items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight">
-            Luffy<span className="text-aurora-violet">Design</span>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Home
-            </Link>
-            <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              About
-            </Link>
-            <Link href="/services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Services
-            </Link>
-            <Link href="/case-studies" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Case Studies
-            </Link>
-            <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
-
-      <main className="pt-16">{children}</main>
+      <main>{children}</main>
 
       {/* Footer */}
       <footer className="border-t border-white/10 mt-32">
