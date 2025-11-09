@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 
 export interface StaggeredMenuItem {
   label: string;
@@ -34,359 +35,165 @@ export interface StaggeredMenuProps {
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   position = 'right',
-  colors = ['#d6c3b0', '#475a6c'],
   items = [],
   socialItems = [],
   displaySocials = true,
-  displayItemNumbering = false,
-  className,
-  logoUrl,
   menuButtonColor = '#d6c3b0',
-  openMenuButtonColor = '#000',
-  changeMenuColorOnOpen = true,
-  accentColor = '#d6c3b0',
-  isFixed = true,
-  onMenuOpen,
-  onMenuClose
+  accentColor = '#d6c3b0'
 }: StaggeredMenuProps) => {
-  const [open, setOpen] = useState(false);
-  const openRef = useRef(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const panelRef = useRef<HTMLDivElement | null>(null);
-  const preLayersRef = useRef<HTMLDivElement | null>(null);
-  const preLayerElsRef = useRef<HTMLElement[]>([]);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-  const plusHRef = useRef<HTMLSpanElement | null>(null);
-  const plusVRef = useRef<HTMLSpanElement | null>(null);
-  const iconRef = useRef<HTMLSpanElement | null>(null);
-
-  const textInnerRef = useRef<HTMLSpanElement | null>(null);
-  const [textLines, setTextLines] = useState<string[]>(['Menu', 'Close']);
-
-  const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
-  const busyRef = useRef(false);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const panel = panelRef.current;
-      const preContainer = preLayersRef.current;
-
-      const plusH = plusHRef.current;
-      const plusV = plusVRef.current;
-      const icon = iconRef.current;
-      const textInner = textInnerRef.current;
-
-      if (!panel || !plusH || !plusV || !icon || !textInner) return;
-
-      let preLayers: HTMLElement[] = [];
-      if (preContainer) {
-        preLayers = Array.from(preContainer.querySelectorAll('.sm-prelayer')) as HTMLElement[];
+  const menuVariants = {
+    closed: {
+      x: position === 'right' ? '100%' : '-100%',
+      transition: {
+        type: 'spring',
+        stiffness: 400,
+        damping: 40
       }
-      preLayerElsRef.current = preLayers;
-
-      const offscreen = position === 'left' ? -100 : 100;
-      gsap.set([panel, ...preLayers], { xPercent: offscreen });
-
-      gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 });
-      gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 });
-      gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' });
-
-      gsap.set(textInner, { yPercent: 0 });
-
-      if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
-    });
-    return () => ctx.revert();
-  }, [menuButtonColor, position]);
-
-  const playOpen = useCallback(() => {
-    if (busyRef.current) return;
-    busyRef.current = true;
-
-    const panel = panelRef.current;
-    const layers = preLayerElsRef.current;
-    if (!panel) return;
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        busyRef.current = false;
-      }
-    });
-
-    // Animate layers
-    layers.forEach((layer, i) => {
-      tl.to(layer, {
-        xPercent: 0,
-        duration: 0.5,
-        ease: 'power4.out'
-      }, i * 0.07);
-    });
-
-    // Animate panel
-    tl.to(panel, {
-      xPercent: 0,
-      duration: 0.65,
-      ease: 'power4.out'
-    }, layers.length * 0.07 + 0.08);
-
-    // Animate menu items
-    const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel')) as HTMLElement[];
-    if (itemEls.length) {
-      gsap.set(itemEls, { yPercent: 140, rotate: 10 });
-      tl.to(itemEls, {
-        yPercent: 0,
-        rotate: 0,
-        duration: 1,
-        ease: 'power4.out',
-        stagger: 0.1
-      }, layers.length * 0.07 + 0.25);
-    }
-
-    // Animate social links
-    const socialTitle = panel.querySelector('.sm-socials-title') as HTMLElement | null;
-    const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link')) as HTMLElement[];
-    if (socialTitle) {
-      gsap.set(socialTitle, { opacity: 0 });
-      tl.to(socialTitle, { opacity: 1, duration: 0.5 }, layers.length * 0.07 + 0.4);
-    }
-    if (socialLinks.length) {
-      gsap.set(socialLinks, { y: 25, opacity: 0 });
-      tl.to(socialLinks, {
-        y: 0,
-        opacity: 1,
-        duration: 0.55,
-        ease: 'power3.out',
-        stagger: 0.08
-      }, layers.length * 0.07 + 0.44);
-    }
-
-    tl.play(0);
-  }, [position]);
-
-  const playClose = useCallback(() => {
-    const panel = panelRef.current;
-    const layers = preLayerElsRef.current;
-    if (!panel) return;
-
-    const all: HTMLElement[] = [...layers, panel];
-    const offscreen = position === 'left' ? -100 : 100;
-
-    gsap.to(all, {
-      xPercent: offscreen,
-      duration: 0.32,
-      ease: 'power3.in',
-      onComplete: () => {
-        busyRef.current = false;
-      }
-    });
-  }, [position]);
-
-  const animateIcon = useCallback((opening: boolean) => {
-    const h = plusHRef.current;
-    const v = plusVRef.current;
-    if (!h || !v) return;
-
-    if (opening) {
-      gsap.to(h, { rotate: 45, duration: 0.5, ease: 'power4.out' });
-      gsap.to(v, { rotate: -45, duration: 0.5, ease: 'power4.out' });
-    } else {
-      gsap.to(h, { rotate: 0, duration: 0.35, ease: 'power3.inOut' });
-      gsap.to(v, { rotate: 90, duration: 0.35, ease: 'power3.inOut' });
-    }
-  }, []);
-
-  const animateColor = useCallback(
-    (opening: boolean) => {
-      const btn = toggleBtnRef.current;
-      if (!btn || !changeMenuColorOnOpen) return;
-      const targetColor = opening ? openMenuButtonColor : menuButtonColor;
-      gsap.to(btn, { color: targetColor, delay: 0.18, duration: 0.3, ease: 'power2.out' });
     },
-    [openMenuButtonColor, menuButtonColor, changeMenuColorOnOpen]
-  );
-
-  const animateText = useCallback((opening: boolean) => {
-    const inner = textInnerRef.current;
-    if (!inner) return;
-
-    const currentLabel = opening ? 'Menu' : 'Close';
-    const targetLabel = opening ? 'Close' : 'Menu';
-    const cycles = 3;
-
-    const seq: string[] = [currentLabel];
-    let last = currentLabel;
-    for (let i = 0; i < cycles; i++) {
-      last = last === 'Menu' ? 'Close' : 'Menu';
-      seq.push(last);
+    open: {
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 400,
+        damping: 40
+      }
     }
-    if (last !== targetLabel) seq.push(targetLabel);
-    seq.push(targetLabel);
+  };
 
-    setTextLines(seq);
-    gsap.set(inner, { yPercent: 0 });
-
-    const lineCount = seq.length;
-    const finalShift = ((lineCount - 1) / lineCount) * 100;
-
-    gsap.to(inner, {
-      yPercent: -finalShift,
-      duration: 0.5 + lineCount * 0.07,
-      ease: 'power4.out'
-    });
-  }, []);
-
-  const toggleMenu = useCallback(() => {
-    const target = !openRef.current;
-    openRef.current = target;
-    setOpen(target);
-
-    if (target) {
-      onMenuOpen?.();
-      playOpen();
-    } else {
-      onMenuClose?.();
-      playClose();
-    }
-
-    animateIcon(target);
-    animateColor(target);
-    animateText(target);
-  }, [playOpen, playClose, animateIcon, animateColor, animateText, onMenuOpen, onMenuClose]);
+  const itemVariants = {
+    closed: { x: 50, opacity: 0 },
+    open: (i: number) => ({
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: i * 0.1,
+        type: 'spring',
+        stiffness: 300,
+        damping: 24
+      }
+    })
+  };
 
   return (
-    <div className={`fixed top-0 left-0 w-full h-screen pointer-events-none z-[9999]`}>
-      {/* Pre-layers */}
-      <div
-        ref={preLayersRef}
-        className="absolute top-0 bottom-0 w-[clamp(260px,40vw,450px)] pointer-events-none"
-        style={{ [position]: 0, zIndex: 51 }}
-      >
-        {colors.slice(0, 2).map((c, i) => (
-          <div
-            key={i}
-            className="sm-prelayer absolute top-0 h-full w-full"
-            style={{
-              background: c,
-              [position]: 0,
-              transform: `translateX(${position === 'left' ? '-100%' : '100%'})`
-            }}
-          />
-        ))}
-      </div>
+    <>
+      {/* Menu Button - Always Visible */}
+      <div className="fixed top-0 left-0 right-0 z-[9998] pointer-events-none">
+        <div className="flex items-center justify-between p-8 pointer-events-auto">
+          <div className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-theme-warm to-theme-slate">
+            LUFFY
+          </div>
 
-      {/* Menu Panel */}
-      <div
-        ref={panelRef}
-        className="absolute top-0 h-full w-[clamp(260px,40vw,450px)] bg-white overflow-y-auto pointer-events-auto"
-        style={{
-          [position]: 0,
-          zIndex: 52,
-          transform: `translateX(${position === 'left' ? '-100%' : '100%'})`,
-          paddingTop: '6em',
-          paddingLeft: '2em',
-          paddingRight: '2em',
-          paddingBottom: '2em'
-        }}
-      >
-        <div className="flex flex-col gap-8 h-full">
-          <ul className="sm-panel-list list-none m-0 p-0 flex flex-col gap-4">
-            {items && items.length > 0 ? (
-              items.map((it, idx) => (
-                <li key={idx} className="overflow-hidden">
-                  <a
-                    href={it.link}
-                    className="text-black font-semibold text-[clamp(2.5rem,7vw,4rem)] leading-none tracking-[-2px] uppercase inline-block no-underline hover:text-[#d6c3b0] transition-colors"
-                    onClick={toggleMenu}
-                  >
-                    <span className="sm-panel-itemLabel inline-block">{it.label}</span>
-                  </a>
-                </li>
-              ))
-            ) : (
-              <li className="overflow-hidden">
-                <span className="text-black font-semibold text-[4rem] leading-none tracking-[-2px] uppercase">
-                  No items
-                </span>
-              </li>
-            )}
-          </ul>
-
-          {displaySocials && socialItems && socialItems.length > 0 && (
-            <div className="mt-auto pt-8 flex flex-col gap-3">
-              <h3 className="sm-socials-title m-0 text-base font-medium" style={{ color: accentColor }}>
-                Connect
-              </h3>
-              <ul className="list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap">
-                {socialItems.map((s, i) => (
-                  <li key={i}>
-                    <a
-                      href={s.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="sm-socials-link text-lg font-medium text-[#111] no-underline hover:opacity-100"
-                      style={{ color: accentColor }}
-                    >
-                      {s.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          <button
+            onClick={toggleMenu}
+            className="flex items-center gap-2 bg-transparent border-0 cursor-pointer text-base font-medium transition-colors"
+            style={{ color: isOpen ? '#000' : menuButtonColor }}
+          >
+            <span className="text-base">{isOpen ? 'Close' : 'Menu'}</span>
+            <div className="relative w-4 h-4 flex items-center justify-center">
+              {isOpen ? (
+                <X className="w-4 h-4" />
+              ) : (
+                <>
+                  <span className="absolute w-full h-0.5 bg-current" />
+                  <span className="absolute w-full h-0.5 bg-current rotate-90" />
+                </>
+              )}
             </div>
-          )}
+          </button>
         </div>
       </div>
 
-      {/* Header */}
-      <header
-        className="absolute top-0 left-0 w-full flex items-center justify-between p-8 pointer-events-auto"
-        style={{ zIndex: 53 }}
-      >
-        <div className="flex items-center">
-          {logoUrl ? (
-            <img src={logoUrl} alt="Logo" className="h-8 w-auto" />
-          ) : (
-            <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-theme-warm to-theme-slate">
-              LUFFY
-            </span>
-          )}
-        </div>
-
-        <button
-          ref={toggleBtnRef}
-          onClick={toggleMenu}
-          className="flex items-center gap-2 bg-transparent border-0 cursor-pointer text-base font-medium"
-          style={{ color: menuButtonColor }}
-        >
-          <span className="relative inline-block h-[1em] overflow-hidden" style={{ width: '45px' }}>
-            <span ref={textInnerRef} className="flex flex-col leading-none">
-              {textLines.map((l, i) => (
-                <span key={i} className="block h-[1em] leading-none">
-                  {l}
-                </span>
-              ))}
-            </span>
-          </span>
-
-          <span ref={iconRef} className="relative w-[14px] h-[14px] flex items-center justify-center">
-            <span
-              ref={plusHRef}
-              className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded -translate-x-1/2 -translate-y-1/2"
+      {/* Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMenu}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9997]"
             />
-            <span
-              ref={plusVRef}
-              className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded -translate-x-1/2 -translate-y-1/2"
-            />
-          </span>
-        </button>
-      </header>
 
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          .sm-panel-list a {
-            font-size: clamp(2rem, 10vw, 3rem) !important;
-          }
-        }
-      `}</style>
-    </div>
+            {/* Menu Panel */}
+            <motion.div
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={menuVariants}
+              className="fixed top-0 bottom-0 w-full md:w-[450px] bg-white shadow-2xl z-[9999] overflow-y-auto"
+              style={{ [position]: 0 }}
+            >
+              <div className="flex flex-col min-h-full p-12 pt-24">
+                {/* Menu Items */}
+                <nav className="flex-1">
+                  <ul className="space-y-6">
+                    {items && items.length > 0 ? (
+                      items.map((item, index) => (
+                        <motion.li
+                          key={index}
+                          custom={index}
+                          variants={itemVariants}
+                          className="overflow-hidden"
+                        >
+                          <a
+                            href={item.link}
+                            onClick={toggleMenu}
+                            className="block text-black font-bold text-5xl md:text-6xl leading-none tracking-tight uppercase hover:text-[#d6c3b0] transition-colors duration-300"
+                            style={{
+                              textShadow: '0 0 40px rgba(0,0,0,0.1)'
+                            }}
+                          >
+                            {item.label}
+                          </a>
+                        </motion.li>
+                      ))
+                    ) : (
+                      <li className="text-black text-4xl">No menu items</li>
+                    )}
+                  </ul>
+                </nav>
+
+                {/* Social Links */}
+                {displaySocials && socialItems && socialItems.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="mt-auto pt-8 border-t border-gray-200"
+                  >
+                    <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider" style={{ color: accentColor }}>
+                      Connect
+                    </h3>
+                    <ul className="flex flex-wrap gap-4">
+                      {socialItems.map((social, index) => (
+                        <li key={index}>
+                          <a
+                            href={social.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-black hover:opacity-60 transition-opacity text-lg font-medium"
+                          >
+                            {social.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
