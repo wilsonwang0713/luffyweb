@@ -49,8 +49,8 @@ export default function Home() {
           className={`
             flex items-center justify-center
             w-20 h-20 rounded-full
-            bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6]
-            hover:shadow-[0_0_60px_rgba(82,39,255,0.9)]
+            bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm
+            hover:shadow-[0_0_60px_rgba(214,195,176,0.7)]
             transition-all duration-300
             ${isStarting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
           `}

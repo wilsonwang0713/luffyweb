@@ -32,10 +32,9 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
 
-    /* Premium Aurora Colors */
-    --aurora-violet: 270 91% 65%;
-    --aurora-cyan: 189 94% 43%;
-    --aurora-aqua: 180 80% 55%;
+    /* Theme Colors */
+    --theme-warm: 30 33% 76%;      /* #d6c3b0 */
+    --theme-slate: 209 21% 35%;    /* #475a6c */
 
     /* Spacing System */
     --spacing-section: 8rem;
