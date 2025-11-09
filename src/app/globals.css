@@ -32,14 +32,16 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
 
-    /* Theme Colors - Warm & Slate */
-    --theme-warm: 30 33% 76%;
-    --theme-slate: 209 21% 35%;
-
-    /* Premium Aurora Colors - Spectral accents */
+    /* Premium Aurora Colors */
     --aurora-violet: 270 91% 65%;
     --aurora-cyan: 189 94% 43%;
     --aurora-aqua: 180 80% 55%;
+
+    /* Spacing System */
+    --spacing-section: 8rem;
+    --spacing-section-sm: 4rem;
+    --spacing-content: 3rem;
+    --spacing-element: 2rem;
 
     --radius: 0.5rem;
   }
@@ -89,45 +91,29 @@
     transform: translateY(-2px);
   }
 
-  /* Glow Effects */
-  .glow-text {
-    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  /* Spacing Utilities */
+  .section-padding {
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
   }
 
-  .glow-border-violet {
-    box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.3), 0 0 20px rgba(168, 85, 247, 0.2);
+  .section-padding-sm {
+    padding-top: var(--spacing-section-sm);
+    padding-bottom: var(--spacing-section-sm);
   }
 
-  .glow-border-cyan {
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.3), 0 0 20px rgba(34, 211, 238, 0.2);
+  .content-spacing {
+    margin-bottom: var(--spacing-content);
   }
 
-  /* Noise Texture */
-  .noise-texture {
-    position: relative;
-  }
-
-  .noise-texture::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-
-  /* Text Styles */
-  .text-balance {
-    text-wrap: balance;
+  .element-spacing {
+    margin-bottom: var(--spacing-element);
   }
 
   /* Container */
   .container-custom {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 2rem;
@@ -136,9 +122,14 @@
 
   @media (max-width: 768px) {
     .container-custom {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
+  }
+
+  /* Text Styles */
+  .text-balance {
+    text-wrap: balance;
   }
 
   /* Gradient Animation */

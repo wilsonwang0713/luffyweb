@@ -28,11 +28,11 @@ export default function MainPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4">
+      <section className="relative min-h-screen flex items-center justify-center px-6">
         <div className="container-custom">
-          <div className="max-w-5xl mx-auto text-center space-y-12">
+          <div className="max-w-4xl mx-auto text-center space-y-10">
             <ScrollFade>
-              <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold tracking-tight leading-none">
+              <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight leading-none">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] animate-gradient-shift">
                   Luffy Design
                 </span>
@@ -40,14 +40,14 @@ export default function MainPage() {
             </ScrollFade>
 
             <ScrollFade delay={0.2}>
-              <p className="text-2xl md:text-3xl text-muted-foreground">
+              <p className="text-xl md:text-2xl text-muted-foreground font-light">
                 AI · Web3 · Infrastructure
               </p>
             </ScrollFade>
 
             <ScrollFade delay={0.4}>
               <Link href="/contact">
-                <button className="group relative overflow-hidden px-12 py-5 rounded-full font-bold text-lg bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] hover:shadow-[0_0_40px_rgba(82,39,255,0.6)] transition-all duration-300">
+                <button className="group relative overflow-hidden px-10 py-4 rounded-full font-bold text-base bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] hover:shadow-[0_0_40px_rgba(82,39,255,0.6)] transition-all duration-300">
                   <span className="relative z-10 flex items-center gap-2">
                     START PROJECT <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -59,19 +59,21 @@ export default function MainPage() {
       </section>
 
       {/* MetaBalls Section */}
-      <section className="py-32 relative">
+      <section className="section-padding relative">
         <div className="container-custom">
           <ScrollFade>
-            <h2 className="text-5xl md:text-7xl font-bold text-center mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet to-aurora-cyan">
-                Neural Architecture
-              </span>
-            </h2>
-            <p className="text-center text-xl text-muted-foreground mb-16">AI/ML Systems</p>
+            <div className="text-center content-spacing">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold element-spacing">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet to-aurora-cyan">
+                  Neural Architecture
+                </span>
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground font-light">AI/ML Systems</p>
+            </div>
           </ScrollFade>
 
           <ScrollFade delay={0.2}>
-            <div className="h-[600px] w-full max-w-4xl mx-auto">
+            <div className="h-[500px] w-full max-w-3xl mx-auto">
               <MetaBalls
                 color="#5227FF"
                 cursorBallColor="#00D4FF"
@@ -90,15 +92,17 @@ export default function MainPage() {
       </section>
 
       {/* MagnetLines Section */}
-      <section className="py-32 relative">
+      <section className="section-padding relative">
         <div className="container-custom">
           <ScrollFade>
-            <h2 className="text-5xl md:text-7xl font-bold text-center mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-cyan to-[#FF00D6]">
-                Decentralized Systems
-              </span>
-            </h2>
-            <p className="text-center text-xl text-muted-foreground mb-16">Web3/Blockchain</p>
+            <div className="text-center content-spacing">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold element-spacing">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-cyan to-[#FF00D6]">
+                  Decentralized Systems
+                </span>
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground font-light">Web3/Blockchain</p>
+            </div>
           </ScrollFade>
 
           <ScrollFade delay={0.2}>
@@ -106,12 +110,11 @@ export default function MainPage() {
               <MagnetLines
                 rows={9}
                 columns={9}
-                containerSize="60vmin"
+                containerSize="min(60vmin, 500px)"
                 lineColor="#00D4FF"
                 lineWidth="0.8vmin"
                 lineHeight="5vmin"
                 baseAngle={0}
-                style={{ margin: "2rem auto" }}
               />
             </div>
           </ScrollFade>
@@ -119,19 +122,21 @@ export default function MainPage() {
       </section>
 
       {/* Cubes Section */}
-      <section className="py-32 relative">
+      <section className="section-padding relative">
         <div className="container-custom">
           <ScrollFade>
-            <h2 className="text-5xl md:text-7xl font-bold text-center mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF00D6] to-aurora-violet">
-                Infrastructure
-              </span>
-            </h2>
-            <p className="text-center text-xl text-muted-foreground mb-16">Cloud/DevOps</p>
+            <div className="text-center content-spacing">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold element-spacing">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF00D6] to-aurora-violet">
+                  Infrastructure
+                </span>
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground font-light">Cloud/DevOps</p>
+            </div>
           </ScrollFade>
 
           <ScrollFade delay={0.2}>
-            <div className="flex justify-center py-12">
+            <div className="flex justify-center">
               <Cubes
                 gridSize={8}
                 maxAngle={60}
@@ -149,24 +154,24 @@ export default function MainPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32">
+      <section className="section-padding-sm">
         <div className="container-custom">
           <ScrollFade>
-            <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto border border-white/10 relative overflow-hidden">
+            <div className="glass-panel rounded-3xl p-10 md:p-16 text-center max-w-3xl mx-auto border border-white/10 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-aurora-violet/10 via-aurora-cyan/10 to-[#FF00D6]/10 opacity-50" />
-              <div className="relative">
-                <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              <div className="relative space-y-6">
+                <h2 className="text-3xl md:text-5xl font-bold">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-aurora-cyan to-white">
                     Let's Build
                   </span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+                <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto font-light">
                   Protocol design to production deployment
                 </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <div className="pt-4">
                   <Link href="/contact">
-                    <button className="group relative overflow-hidden px-12 py-5 rounded-full font-bold text-lg bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] hover:shadow-[0_0_50px_rgba(82,39,255,0.8)] transition-shadow duration-300">
-                      <span className="relative z-10 flex items-center font-semibold gap-2">
+                    <button className="group relative overflow-hidden px-10 py-4 rounded-full font-bold text-base bg-gradient-to-r from-aurora-violet via-aurora-cyan to-[#FF00D6] hover:shadow-[0_0_50px_rgba(82,39,255,0.8)] transition-shadow duration-300">
+                      <span className="relative z-10 flex items-center gap-2">
                         CONTACT US <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </button>
