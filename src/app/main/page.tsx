@@ -58,7 +58,7 @@ const services = [
 
 export default function MainPage() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen">
         {/* Particles Background */}
         <div className="fixed inset-0 -z-10">
           <Particles
@@ -182,7 +182,7 @@ export default function MainPage() {
                     <div className="relative z-10 space-y-4">
                       {/* Icon */}
                       <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient} p-[2px]`}>
-                        <div className="w-full h-full rounded-xl bg-black flex items-center justify-center">
+                        <div className="w-full h-full rounded-xl bg-white flex items-center justify-center">
                           <service.icon className="w-7 h-7 text-theme-warm" />
                         </div>
                       </div>
@@ -239,7 +239,7 @@ export default function MainPage() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* AI MetaBalls */}
             <ScrollFade delay={0.1}>
-              <div className="group relative p-6 rounded-2xl border border-theme-warm/10 bg-black/40 backdrop-blur-sm hover:border-theme-warm/30 transition-all duration-500">
+              <div className="group relative p-6 rounded-2xl border border-theme-warm/10 bg-white/5 backdrop-blur-sm hover:border-theme-warm/30 transition-all duration-500">
                 <div className="h-[300px] w-full mb-4 rounded-xl overflow-hidden">
                   <MetaBalls
                     color="#d6c3b0"
@@ -261,7 +261,7 @@ export default function MainPage() {
 
             {/* Web3 MagnetLines */}
             <ScrollFade delay={0.2}>
-              <div className="group relative p-6 rounded-2xl border border-theme-warm/10 bg-black/40 backdrop-blur-sm hover:border-theme-warm/30 transition-all duration-500">
+              <div className="group relative p-6 rounded-2xl border border-theme-warm/10 bg-white/5 backdrop-blur-sm hover:border-theme-warm/30 transition-all duration-500">
                 <div className="h-[300px] w-full mb-4 rounded-xl overflow-hidden flex items-center justify-center">
                   <MagnetLines
                     rows={7}
@@ -281,7 +281,7 @@ export default function MainPage() {
 
             {/* Infrastructure Cubes */}
             <ScrollFade delay={0.3}>
-              <div className="group relative p-6 rounded-2xl border border-theme-warm/10 bg-black/40 backdrop-blur-sm hover:border-theme-warm/30 transition-all duration-500">
+              <div className="group relative p-6 rounded-2xl border border-theme-warm/10 bg-white/5 backdrop-blur-sm hover:border-theme-warm/30 transition-all duration-500">
                 <div className="h-[300px] w-full mb-4 rounded-xl overflow-hidden flex items-center justify-center">
                   <Cubes
                     gridSize={6}
