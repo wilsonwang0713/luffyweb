@@ -10,7 +10,20 @@ const Particles = dynamic(() => import('@/components/ui/particles'), { ssr: fals
 const MetaBalls = dynamic(() => import('@/components/ui/metaballs'), { ssr: false });
 const MagnetLines = dynamic(() => import('@/components/ui/magnet-lines'), { ssr: false });
 const Cubes = dynamic(() => import('@/components/ui/cubes'), { ssr: false });
-const Navbar = dynamic(() => import('@/components/ui/navbar'), { ssr: false });
+const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
+
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+  { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
+  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+];
+
+const socialItems = [
+  { label: 'Twitter', link: 'https://twitter.com' },
+  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'LinkedIn', link: 'https://linkedin.com' }
+];
 
 const services = [
   {
@@ -60,7 +73,20 @@ const services = [
 export default function MainPage() {
   return (
     <>
-      <Navbar />
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={false}
+        menuButtonColor="#d6c3b0"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        colors={['#d6c3b0', '#475a6c']}
+        accentColor="#d6c3b0"
+        isFixed={true}
+      />
+
       <main className="min-h-screen bg-black">
         {/* Particles Background */}
         <div className="fixed inset-0 -z-10">

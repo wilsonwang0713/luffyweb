@@ -7,7 +7,8 @@ import Link from 'next/link';
 
 const Particles = dynamic(() => import('@/components/ui/particles'), { ssr: false });
 const CircularText = dynamic(() => import('@/components/ui/circular-text'), { ssr: false });
-const Navbar = dynamic(() => import('@/components/ui/navbar'), { ssr: false });
+const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
+const RotatingText = dynamic(() => import('@/components/ui/rotating-text'), { ssr: false });
 
 export default function Home() {
   const [isStarting, setIsStarting] = useState(false);
@@ -42,9 +43,35 @@ export default function Home() {
     }
   };
 
+  const menuItems = [
+    { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+    { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+    { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
+    { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+  ];
+
+  const socialItems = [
+    { label: 'Twitter', link: 'https://twitter.com' },
+    { label: 'GitHub', link: 'https://github.com' },
+    { label: 'LinkedIn', link: 'https://linkedin.com' }
+  ];
+
   return (
     <>
-      <Navbar />
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={false}
+        menuButtonColor="#d6c3b0"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        colors={['#d6c3b0', '#475a6c']}
+        accentColor="#d6c3b0"
+        isFixed={true}
+      />
+
       <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
         {/* Background Particles */}
         <div className="absolute inset-0 z-0">
@@ -93,11 +120,28 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Tagline */}
-          <motion.div variants={itemVariants} className="max-w-3xl space-y-4">
+          {/* Tagline with Rotating Text */}
+          <motion.div variants={itemVariants} className="max-w-3xl space-y-6">
             <p className="text-xl md:text-2xl lg:text-3xl text-theme-warm/90 font-light tracking-wide">
               Crafting Digital Experiences
             </p>
+
+            {/* Rotating Text Badge */}
+            <div className="inline-block">
+              <RotatingText
+                texts={['UI/UX Design', 'Web Development', 'AI Solutions', 'Blockchain']}
+                mainClassName="px-4 py-2 bg-gradient-to-r from-theme-warm/20 to-theme-slate/20 border border-theme-warm/30 backdrop-blur-sm text-white overflow-hidden rounded-full text-sm md:text-base font-medium"
+                staggerFrom="last"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-120%" }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2500}
+              />
+            </div>
+
             <p className="text-base md:text-lg text-muted-foreground/70">
               UI/UX Design · Web & Mobile Apps · AI Solutions · Web3 · Infrastructure
             </p>
@@ -185,18 +229,20 @@ export default function Home() {
             variants={itemVariants}
             className="pt-8"
           >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-              className="flex flex-col items-center gap-2 text-theme-warm/50"
-            >
-              <span className="text-xs tracking-widest">SCROLL</span>
-              <div className="w-px h-12 bg-gradient-to-b from-theme-warm/50 to-transparent" />
-            </motion.div>
+            <Link href="/main" className="no-underline">
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+                className="flex flex-col items-center gap-2 text-theme-warm/50 hover:text-theme-warm/80 transition-colors cursor-pointer"
+              >
+                <span className="text-xs tracking-widest">EXPLORE</span>
+                <div className="w-px h-12 bg-gradient-to-b from-theme-warm/50 to-transparent" />
+              </motion.div>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

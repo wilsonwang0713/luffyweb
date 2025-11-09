@@ -132,29 +132,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="py-32">
-        <div className="container-custom">
-          <ScrollFade>
-            <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold">
-                Ready to Work Together?
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Let's discuss your project and see if we're a good fit.
-              </p>
-              <div>
-                <Link href="/contact">
-                  <MagneticButton>
-                    Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
-                  </MagneticButton>
-                </Link>
-              </div>
-            </div>
-          </ScrollFade>
-        </div>
-      </section>
     </main>
   );
 }
