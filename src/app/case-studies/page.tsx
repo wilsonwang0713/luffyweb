@@ -217,29 +217,6 @@ export default function CaseStudies() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-32">
-        <div className="container-custom">
-          <ScrollFade>
-            <div className="glass-panel rounded-3xl p-12 md:p-20 text-center space-y-8 max-w-4xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold">
-                Ready to Build Your Success Story?
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Let's discuss how we can help your business achieve similar results.
-              </p>
-              <div>
-                <Link href="/contact">
-                  <MagneticButton>
-                    Start a Project <ArrowRight className="ml-2 h-4 w-4" />
-                  </MagneticButton>
-                </Link>
-              </div>
-            </div>
-          </ScrollFade>
-        </div>
-      </section>
     </main>
     </>
   );

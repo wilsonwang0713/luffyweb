@@ -4,7 +4,26 @@ import { ScrollFade } from '@/components/ui/scroll-fade';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MagneticButton } from '@/components/ui/magnetic-button';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { ArrowRight, Cpu, Wallet, Code2, Layers, CheckCircle2, Sparkles, Shield, Zap, Target } from 'lucide-react';
+
+const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
+const RotatingText = dynamic(() => import('@/components/ui/rotating-text'), { ssr: false });
+
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Services', ariaLabel: 'View all services', link: '/services' },
+  { label: 'Main', ariaLabel: 'View main page', link: '/main' },
+  { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
+  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+];
+
+const socialItems = [
+  { label: 'Twitter', link: 'https://twitter.com' },
+  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'LinkedIn', link: 'https://linkedin.com' }
+];
 
 export default function Services() {
   const services = [
@@ -95,9 +114,24 @@ export default function Services() {
   ];
 
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-32 px-4">
+    <>
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={false}
+        menuButtonColor="#d6c3b0"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        colors={['#d6c3b0', '#475a6c']}
+        accentColor="#d6c3b0"
+        isFixed={true}
+      />
+
+      <main className="min-h-screen">
+        {/* Hero Section */}
+        <section className="py-32 px-4">
         <div className="container-custom">
           <ScrollFade>
             <div className="max-w-4xl mx-auto text-center space-y-6">
@@ -108,11 +142,20 @@ export default function Services() {
                     Services That Ship
                   </h1>
                 </div>
-                {/* Main text */}
+                {/* Main text with RotatingText */}
                 <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight">
-                  <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
-                    Services That Ship
-                  </span>
+                  <RotatingText
+                    texts={['Services That Ship', 'Solutions That Scale', 'Products That Perform']}
+                    mainClassName="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]"
+                    staggerFrom="first"
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="overflow-hidden"
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    rotationInterval={3000}
+                  />
                 </h1>
               </div>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -192,5 +235,6 @@ export default function Services() {
         </section>
       ))}
     </main>
+    </>
   );
 }
