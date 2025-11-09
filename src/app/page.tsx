@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-const Orb = dynamic(() => import('@/components/ui/orb'), { ssr: false });
+const Particles = dynamic(() => import('@/components/ui/particles'), { ssr: false });
 const CircularText = dynamic(() => import('@/components/ui/circular-text'), { ssr: false });
 
 export default function Home() {
@@ -17,61 +18,161 @@ export default function Home() {
     }, 1000);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   return (
     <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      <div className="relative z-10 w-full flex flex-col items-center justify-center px-6 py-12">
-        {/* Orb */}
+      {/* Background Particles */}
+      <div className="absolute inset-0 z-0">
+        <Particles
+          particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
+          particleCount={100}
+          speed={0.5}
+        />
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="relative w-full max-w-xl aspect-square mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col items-center text-center space-y-12"
         >
-          <div className="absolute inset-0">
-            <Orb
-              hue={260}
-              hoverIntensity={0.3}
-              rotateOnHover={true}
-              forceHoverState={false}
-            />
-          </div>
-        </motion.div>
+          {/* Main Heading */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-warm via-white to-theme-slate animate-gradient-shift">
+                LUFFY
+              </span>
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-slate via-theme-warm to-white">
+                DESIGN
+              </span>
+            </h1>
+          </motion.div>
 
-        {/* Circular Text Button */}
-        <motion.div
-          onClick={handleStart}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className={`${isStarting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-        >
-          <div className="relative w-[200px] h-[200px] flex items-center justify-center">
-            {/* Background glow effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm blur-xl opacity-50" />
+          {/* Tagline */}
+          <motion.div variants={itemVariants} className="max-w-3xl space-y-4">
+            <p className="text-xl md:text-2xl lg:text-3xl text-theme-warm/90 font-light tracking-wide">
+              Crafting Digital Experiences
+            </p>
+            <p className="text-base md:text-lg text-muted-foreground/70">
+              UI/UX Design · Web & Mobile Apps · AI Solutions · Web3 · Infrastructure
+            </p>
+          </motion.div>
 
-            {/* Circular Text */}
-            <CircularText
-              text="LUFFYDESIGN*LUFFYDESIGN*"
-              spinDuration={20}
-              onHover="speedUp"
-              className="relative z-10"
-            />
+          {/* Interactive CTA */}
+          <motion.div variants={itemVariants} className="pt-8">
+            <div
+              onClick={handleStart}
+              className={`group relative ${isStarting ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+            >
+              {/* Glow Effect */}
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-theme-warm/20 via-theme-slate/20 to-theme-warm/20 blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-70 group-hover:opacity-100" />
 
-            {/* Center loading indicator when starting */}
-            {isStarting && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                  className="w-16 h-16 border-4 border-theme-warm border-t-transparent rounded-full"
+              {/* Circular Text Button */}
+              <div className="relative flex items-center justify-center">
+                <CircularText
+                  text="EXPLORE*EXPLORE*EXPLORE*"
+                  spinDuration={20}
+                  onHover="speedUp"
+                  className="relative z-10"
                 />
+
+                {/* Center Icon/Loading */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {isStarting ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1, rotate: 360 }}
+                      className="w-16 h-16 border-4 border-theme-warm border-t-transparent rounded-full"
+                      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                    />
+                  ) : (
+                    <motion.div
+                      className="w-3 h-3 rounded-full bg-gradient-to-r from-theme-warm to-theme-slate"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [1, 0.7, 1]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: 'easeInOut'
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Stats/Features */}
+          <motion.div
+            variants={itemVariants}
+            className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-4xl"
+          >
+            {[
+              { number: '50+', label: 'Projects' },
+              { number: '30+', label: 'Clients' },
+              { number: '6+', label: 'Services' },
+              { number: '100%', label: 'Quality' }
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                className="group p-6 rounded-2xl border border-theme-warm/10 bg-theme-slate/5 backdrop-blur-sm hover:border-theme-warm/30 hover:bg-theme-warm/5 transition-all duration-300"
+                whileHover={{ y: -5 }}
+              >
+                <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-theme-warm to-theme-slate">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-muted-foreground mt-2">
+                  {stat.label}
+                </div>
               </motion.div>
-            )}
-          </div>
+            ))}
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            variants={itemVariants}
+            className="pt-8"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+              className="flex flex-col items-center gap-2 text-theme-warm/50"
+            >
+              <span className="text-xs tracking-widest">SCROLL</span>
+              <div className="w-px h-12 bg-gradient-to-b from-theme-warm/50 to-transparent" />
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </main>
