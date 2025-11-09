@@ -46,8 +46,8 @@ export default function Home() {
   const menuItems = [
     { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
     { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+    { label: 'Main', ariaLabel: 'View solutions overview', link: '/main' },
     { label: 'Services', ariaLabel: 'View all services', link: '/services' },
-    { label: 'Main', ariaLabel: 'View main page', link: '/main' },
     { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
     { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
   ];
@@ -74,24 +74,24 @@ export default function Home() {
         isFixed={true}
       />
 
-      <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-        {/* Background Particles */}
-        <div className="absolute inset-0 z-0">
-          <Particles
-            particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
-            particleCount={100}
-            speed={0.5}
-          />
-        </div>
+      {/* Particles Background */}
+      <div className="fixed inset-0 -z-10">
+        <Particles
+          particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
+          particleCount={100}
+          speed={0.5}
+        />
+      </div>
 
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(214,195,176,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(214,195,176,0.1) 1px, transparent 1px)',
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
+      {/* Grid pattern overlay */}
+      <div className="fixed inset-0 -z-10 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(rgba(214,195,176,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(214,195,176,0.1) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
 
+      <main className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Main Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20">
         <motion.div

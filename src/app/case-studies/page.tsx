@@ -8,13 +8,13 @@ import dynamic from 'next/dynamic';
 import { ArrowRight, TrendingUp, Users, Zap, Shield } from 'lucide-react';
 
 const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
-const Waves = dynamic(() => import('@/components/ui/waves'), { ssr: false });
+const Particles = dynamic(() => import('@/components/ui/particles'), { ssr: false });
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Main', ariaLabel: 'View solutions overview', link: '/main' },
   { label: 'Services', ariaLabel: 'View all services', link: '/services' },
-  { label: 'Main', ariaLabel: 'View main page', link: '/main' },
   { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
@@ -104,6 +104,23 @@ export default function CaseStudies() {
         accentColor="#d6c3b0"
         isFixed={true}
       />
+
+      {/* Particles Background */}
+      <div className="fixed inset-0 -z-10">
+        <Particles
+          particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
+          particleCount={120}
+          speed={0.3}
+        />
+      </div>
+
+      {/* Grid pattern overlay */}
+      <div className="fixed inset-0 -z-10 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(rgba(214,195,176,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(214,195,176,0.1) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
 
       <main className="min-h-screen">
         {/* Hero Section */}
