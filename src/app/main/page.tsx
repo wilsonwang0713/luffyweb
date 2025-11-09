@@ -48,7 +48,7 @@ export default function MainPage() {
             <ScrollFade delay={0.4}>
               <Link href="/contact">
                 <button className="group relative overflow-hidden px-10 py-4 rounded-full font-bold text-base bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm hover:shadow-[0_0_40px_rgba(214,195,176,0.5)] transition-all duration-300">
-                  <span className="relative z-10 flex items-center gap-2">
+                  <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
                     START PROJECT <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </button>
@@ -207,7 +207,7 @@ export default function MainPage() {
                 <div className="pt-4">
                   <Link href="/contact">
                     <button className="group relative overflow-hidden px-10 py-4 rounded-full font-bold text-base bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm hover:shadow-[0_0_50px_rgba(214,195,176,0.6)] transition-shadow duration-300">
-                      <span className="relative z-10 flex items-center gap-2">
+                      <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
                         CONTACT US <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </button>
