@@ -8,6 +8,7 @@ import Link from 'next/link';
 const Particles = dynamic(() => import('@/components/ui/particles'), { ssr: false });
 const CircularText = dynamic(() => import('@/components/ui/circular-text'), { ssr: false });
 const RotatingText = dynamic(() => import('@/components/ui/rotating-text'), { ssr: false });
+const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
 
 export default function Home() {
   const [isStarting, setIsStarting] = useState(false);
@@ -42,8 +43,36 @@ export default function Home() {
     }
   };
 
+  const menuItems = [
+    { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+    { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+    { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
+    { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+  ];
+
+  const socialItems = [
+    { label: 'Twitter', link: 'https://twitter.com' },
+    { label: 'GitHub', link: 'https://github.com' },
+    { label: 'LinkedIn', link: 'https://linkedin.com' }
+  ];
+
   return (
-    <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <>
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={false}
+        menuButtonColor="#d6c3b0"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        colors={['#d6c3b0', '#475a6c']}
+        accentColor="#d6c3b0"
+        isFixed={true}
+      />
+
+      <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
         {/* Background Particles */}
         <div className="absolute inset-0 z-0">
           <Particles
@@ -218,5 +247,6 @@ export default function Home() {
         </motion.div>
       </div>
     </main>
+    </>
   );
 }
