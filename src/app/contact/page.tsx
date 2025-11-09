@@ -4,6 +4,23 @@ import { useState } from 'react';
 import { ScrollFade } from '@/components/ui/scroll-fade';
 import { Button } from '@/components/ui/button';
 import { Mail, ArrowRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
+const Orb = dynamic(() => import('@/components/ui/orb'), { ssr: false });
+
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+  { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
+  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+];
+
+const socialItems = [
+  { label: 'Twitter', link: 'https://twitter.com' },
+  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'LinkedIn', link: 'https://linkedin.com' }
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -30,9 +47,31 @@ export default function Contact() {
   };
 
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-32 px-4">
+    <>
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={false}
+        menuButtonColor="#d6c3b0"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        colors={['#d6c3b0', '#475a6c']}
+        accentColor="#d6c3b0"
+        isFixed={true}
+      />
+
+      <main className="min-h-screen relative">
+        {/* Orb Background */}
+        <div className="fixed inset-0 -z-10 flex items-center justify-center">
+          <div className="w-full h-full max-w-4xl max-h-4xl">
+            <Orb hue={30} hoverIntensity={0.2} rotateOnHover={true} forceHoverState={false} />
+          </div>
+        </div>
+
+        {/* Hero Section */}
+        <section className="py-32 px-4 relative z-10">
         <div className="container-custom">
           <ScrollFade>
             <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -237,5 +276,6 @@ export default function Contact() {
         </div>
       </section>
     </main>
+    </>
   );
 }

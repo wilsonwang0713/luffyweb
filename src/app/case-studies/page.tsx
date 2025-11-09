@@ -4,7 +4,24 @@ import { ScrollFade } from '@/components/ui/scroll-fade';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MagneticButton } from '@/components/ui/magnetic-button';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { ArrowRight, TrendingUp, Users, Zap, Shield } from 'lucide-react';
+
+const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
+const Waves = dynamic(() => import('@/components/ui/waves'), { ssr: false });
+
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+  { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
+  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+];
+
+const socialItems = [
+  { label: 'Twitter', link: 'https://twitter.com' },
+  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'LinkedIn', link: 'https://linkedin.com' }
+];
 
 export default function CaseStudies() {
   const caseStudies = [
@@ -71,9 +88,41 @@ export default function CaseStudies() {
   ];
 
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-32 px-4">
+    <>
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={false}
+        menuButtonColor="#d6c3b0"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        colors={['#d6c3b0', '#475a6c']}
+        accentColor="#d6c3b0"
+        isFixed={true}
+      />
+
+      <main className="min-h-screen relative">
+        {/* Waves Background */}
+        <div className="fixed inset-0 -z-10">
+          <Waves
+            lineColor="#fff"
+            backgroundColor="rgba(255, 255, 255, 0.2)"
+            waveSpeedX={0.02}
+            waveSpeedY={0.01}
+            waveAmpX={40}
+            waveAmpY={20}
+            friction={0.9}
+            tension={0.01}
+            maxCursorMove={120}
+            xGap={12}
+            yGap={36}
+          />
+        </div>
+
+        {/* Hero Section */}
+        <section className="py-32 px-4 relative z-10">
         <div className="container-custom">
           <ScrollFade>
             <div className="max-w-4xl mx-auto text-center space-y-6">
@@ -196,5 +245,6 @@ export default function CaseStudies() {
         </div>
       </section>
     </main>
+    </>
   );
 }
