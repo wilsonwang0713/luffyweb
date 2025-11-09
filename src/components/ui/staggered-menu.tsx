@@ -61,19 +61,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const iconRef = useRef<HTMLSpanElement | null>(null);
 
   const textInnerRef = useRef<HTMLSpanElement | null>(null);
-  const textWrapRef = useRef<HTMLSpanElement | null>(null);
   const [textLines, setTextLines] = useState<string[]>(['Menu', 'Close']);
-
-  const openTlRef = useRef<gsap.core.Timeline | null>(null);
-  const closeTweenRef = useRef<gsap.core.Tween | null>(null);
-  const spinTweenRef = useRef<gsap.core.Timeline | null>(null);
-  const textCycleAnimRef = useRef<gsap.core.Tween | null>(null);
-  const colorTweenRef = useRef<gsap.core.Tween | null>(null);
 
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
   const busyRef = useRef(false);
-
-  const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -107,201 +98,115 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     return () => ctx.revert();
   }, [menuButtonColor, position]);
 
-  const buildOpenTimeline = useCallback(() => {
-    const panel = panelRef.current;
-    const layers = preLayerElsRef.current;
-    if (!panel) return null;
-
-    openTlRef.current?.kill();
-    if (closeTweenRef.current) {
-      closeTweenRef.current.kill();
-      closeTweenRef.current = null;
-    }
-    itemEntranceTweenRef.current?.kill();
-
-    const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel')) as HTMLElement[];
-    const numberEls = Array.from(
-      panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item')
-    ) as HTMLElement[];
-    const socialTitle = panel.querySelector('.sm-socials-title') as HTMLElement | null;
-    const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link')) as HTMLElement[];
-
-    const layerStates = layers.map(el => ({ el, start: Number(gsap.getProperty(el, 'xPercent')) }));
-    const panelStart = Number(gsap.getProperty(panel, 'xPercent'));
-
-    if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
-    if (numberEls.length) gsap.set(numberEls, { ['--sm-num-opacity' as any]: 0 });
-    if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
-    if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
-
-    const tl = gsap.timeline({ paused: true });
-
-    layerStates.forEach((ls, i) => {
-      tl.fromTo(ls.el, { xPercent: ls.start }, { xPercent: 0, duration: 0.5, ease: 'power4.out' }, i * 0.07);
-    });
-
-    const lastTime = layerStates.length ? (layerStates.length - 1) * 0.07 : 0;
-    const panelInsertTime = lastTime + (layerStates.length ? 0.08 : 0);
-    const panelDuration = 0.65;
-
-    tl.fromTo(
-      panel,
-      { xPercent: panelStart },
-      { xPercent: 0, duration: panelDuration, ease: 'power4.out' },
-      panelInsertTime
-    );
-
-    if (itemEls.length) {
-      const itemsStartRatio = 0.15;
-      const itemsStart = panelInsertTime + panelDuration * itemsStartRatio;
-
-      tl.to(
-        itemEls,
-        { yPercent: 0, rotate: 0, duration: 1, ease: 'power4.out', stagger: { each: 0.1, from: 'start' } },
-        itemsStart
-      );
-
-      if (numberEls.length) {
-        tl.to(
-          numberEls,
-          { duration: 0.6, ease: 'power2.out', ['--sm-num-opacity' as any]: 1, stagger: { each: 0.08, from: 'start' } },
-          itemsStart + 0.1
-        );
-      }
-    }
-
-    if (socialTitle || socialLinks.length) {
-      const socialsStart = panelInsertTime + panelDuration * 0.4;
-
-      if (socialTitle) tl.to(socialTitle, { opacity: 1, duration: 0.5, ease: 'power2.out' }, socialsStart);
-      if (socialLinks.length) {
-        tl.to(
-          socialLinks,
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.55,
-            ease: 'power3.out',
-            stagger: { each: 0.08, from: 'start' },
-            onComplete: () => {
-              gsap.set(socialLinks, { clearProps: 'opacity' });
-            }
-          },
-          socialsStart + 0.04
-        );
-      }
-    }
-
-    openTlRef.current = tl;
-    return tl;
-  }, [position]);
-
   const playOpen = useCallback(() => {
     if (busyRef.current) return;
     busyRef.current = true;
-    const tl = buildOpenTimeline();
-    if (tl) {
-      tl.eventCallback('onComplete', () => {
-        busyRef.current = false;
-      });
-      tl.play(0);
-    } else {
-      busyRef.current = false;
-    }
-  }, [buildOpenTimeline]);
-
-  const playClose = useCallback(() => {
-    openTlRef.current?.kill();
-    openTlRef.current = null;
-    itemEntranceTweenRef.current?.kill();
 
     const panel = panelRef.current;
     const layers = preLayerElsRef.current;
     if (!panel) return;
 
-    const all: HTMLElement[] = [...layers, panel];
-    closeTweenRef.current?.kill();
+    const tl = gsap.timeline({
+      onComplete: () => {
+        busyRef.current = false;
+      }
+    });
 
+    // Animate layers
+    layers.forEach((layer, i) => {
+      tl.to(layer, {
+        xPercent: 0,
+        duration: 0.5,
+        ease: 'power4.out'
+      }, i * 0.07);
+    });
+
+    // Animate panel
+    tl.to(panel, {
+      xPercent: 0,
+      duration: 0.65,
+      ease: 'power4.out'
+    }, layers.length * 0.07 + 0.08);
+
+    // Animate menu items
+    const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel')) as HTMLElement[];
+    if (itemEls.length) {
+      gsap.set(itemEls, { yPercent: 140, rotate: 10 });
+      tl.to(itemEls, {
+        yPercent: 0,
+        rotate: 0,
+        duration: 1,
+        ease: 'power4.out',
+        stagger: 0.1
+      }, layers.length * 0.07 + 0.25);
+    }
+
+    // Animate social links
+    const socialTitle = panel.querySelector('.sm-socials-title') as HTMLElement | null;
+    const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link')) as HTMLElement[];
+    if (socialTitle) {
+      gsap.set(socialTitle, { opacity: 0 });
+      tl.to(socialTitle, { opacity: 1, duration: 0.5 }, layers.length * 0.07 + 0.4);
+    }
+    if (socialLinks.length) {
+      gsap.set(socialLinks, { y: 25, opacity: 0 });
+      tl.to(socialLinks, {
+        y: 0,
+        opacity: 1,
+        duration: 0.55,
+        ease: 'power3.out',
+        stagger: 0.08
+      }, layers.length * 0.07 + 0.44);
+    }
+
+    tl.play(0);
+  }, [position]);
+
+  const playClose = useCallback(() => {
+    const panel = panelRef.current;
+    const layers = preLayerElsRef.current;
+    if (!panel) return;
+
+    const all: HTMLElement[] = [...layers, panel];
     const offscreen = position === 'left' ? -100 : 100;
 
-    closeTweenRef.current = gsap.to(all, {
+    gsap.to(all, {
       xPercent: offscreen,
       duration: 0.32,
       ease: 'power3.in',
-      overwrite: 'auto',
       onComplete: () => {
-        const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel')) as HTMLElement[];
-        if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
-
-        const numberEls = Array.from(
-          panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item')
-        ) as HTMLElement[];
-        if (numberEls.length) gsap.set(numberEls, { ['--sm-num-opacity' as any]: 0 });
-
-        const socialTitle = panel.querySelector('.sm-socials-title') as HTMLElement | null;
-        const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link')) as HTMLElement[];
-        if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
-        if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
-
         busyRef.current = false;
       }
     });
   }, [position]);
 
   const animateIcon = useCallback((opening: boolean) => {
-    const icon = iconRef.current;
     const h = plusHRef.current;
     const v = plusVRef.current;
-    if (!icon || !h || !v) return;
-
-    spinTweenRef.current?.kill();
+    if (!h || !v) return;
 
     if (opening) {
-      gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' });
-      spinTweenRef.current = gsap
-        .timeline({ defaults: { ease: 'power4.out' } })
-        .to(h, { rotate: 45, duration: 0.5 }, 0)
-        .to(v, { rotate: -45, duration: 0.5 }, 0);
+      gsap.to(h, { rotate: 45, duration: 0.5, ease: 'power4.out' });
+      gsap.to(v, { rotate: -45, duration: 0.5, ease: 'power4.out' });
     } else {
-      spinTweenRef.current = gsap
-        .timeline({ defaults: { ease: 'power3.inOut' } })
-        .to(h, { rotate: 0, duration: 0.35 }, 0)
-        .to(v, { rotate: 90, duration: 0.35 }, 0)
-        .to(icon, { rotate: 0, duration: 0.001 }, 0);
+      gsap.to(h, { rotate: 0, duration: 0.35, ease: 'power3.inOut' });
+      gsap.to(v, { rotate: 90, duration: 0.35, ease: 'power3.inOut' });
     }
   }, []);
 
   const animateColor = useCallback(
     (opening: boolean) => {
       const btn = toggleBtnRef.current;
-      if (!btn) return;
-      colorTweenRef.current?.kill();
-      if (changeMenuColorOnOpen) {
-        const targetColor = opening ? openMenuButtonColor : menuButtonColor;
-        colorTweenRef.current = gsap.to(btn, { color: targetColor, delay: 0.18, duration: 0.3, ease: 'power2.out' });
-      } else {
-        gsap.set(btn, { color: menuButtonColor });
-      }
+      if (!btn || !changeMenuColorOnOpen) return;
+      const targetColor = opening ? openMenuButtonColor : menuButtonColor;
+      gsap.to(btn, { color: targetColor, delay: 0.18, duration: 0.3, ease: 'power2.out' });
     },
     [openMenuButtonColor, menuButtonColor, changeMenuColorOnOpen]
   );
 
-  React.useEffect(() => {
-    if (toggleBtnRef.current) {
-      if (changeMenuColorOnOpen) {
-        const targetColor = openRef.current ? openMenuButtonColor : menuButtonColor;
-        gsap.set(toggleBtnRef.current, { color: targetColor });
-      } else {
-        gsap.set(toggleBtnRef.current, { color: menuButtonColor });
-      }
-    }
-  }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor]);
-
   const animateText = useCallback((opening: boolean) => {
     const inner = textInnerRef.current;
     if (!inner) return;
-
-    textCycleAnimRef.current?.kill();
 
     const currentLabel = opening ? 'Menu' : 'Close';
     const targetLabel = opening ? 'Close' : 'Menu';
@@ -322,7 +227,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     const lineCount = seq.length;
     const finalShift = ((lineCount - 1) / lineCount) * 100;
 
-    textCycleAnimRef.current = gsap.to(inner, {
+    gsap.to(inner, {
       yPercent: -finalShift,
       duration: 0.5 + lineCount * 0.07,
       ease: 'power4.out'
@@ -348,195 +253,137 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   }, [playOpen, playClose, animateIcon, animateColor, animateText, onMenuOpen, onMenuClose]);
 
   return (
-    <div
-      className={`sm-scope ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none' : 'w-full h-full'} z-50`}
-    >
+    <div className={`fixed top-0 left-0 w-full h-screen pointer-events-none z-[9999]`}>
+      {/* Pre-layers */}
       <div
-        className={(className ? className + ' ' : '') + 'staggered-menu-wrapper relative w-full h-full'}
-        style={accentColor ? ({ ['--sm-accent' as any]: accentColor } as React.CSSProperties) : undefined}
-        data-position={position}
-        data-open={open || undefined}
+        ref={preLayersRef}
+        className="absolute top-0 bottom-0 w-[clamp(260px,40vw,450px)] pointer-events-none"
+        style={{ [position]: 0, zIndex: 51 }}
       >
-        <div
-          ref={preLayersRef}
-          className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-[49]"
-          aria-hidden="true"
-        >
-          {(() => {
-            const raw = colors && colors.length ? colors.slice(0, 4) : ['#d6c3b0', '#475a6c'];
-            let arr = [...raw];
-            if (arr.length >= 3) {
-              const mid = Math.floor(arr.length / 2);
-              arr.splice(mid, 1);
-            }
-            return arr.map((c, i) => (
-              <div
-                key={i}
-                className="sm-prelayer absolute top-0 right-0 h-full w-full translate-x-0"
-                style={{ background: c }}
-              />
-            ));
-          })()}
-        </div>
-
-        <header
-          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-8 bg-transparent z-50 pointer-events-auto"
-          aria-label="Main navigation header"
-        >
-          <div className="sm-logo flex items-center select-none" aria-label="Logo">
-            {logoUrl ? (
-              <img
-                src={logoUrl}
-                alt="Luffy Design Logo"
-                className="sm-logo-img block h-8 w-auto object-contain"
-                draggable={false}
-              />
-            ) : (
-              <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-theme-warm to-theme-slate">
-                LUFFY
-              </span>
-            )}
-          </div>
-
-          <button
-            ref={toggleBtnRef}
-            className="sm-toggle relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible text-base"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            aria-controls="staggered-menu-panel"
-            onClick={toggleMenu}
-            type="button"
-          >
-            <span
-              ref={textWrapRef}
-              className="sm-toggle-textWrap relative inline-block h-[1em] overflow-hidden whitespace-nowrap w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)]"
-              aria-hidden="true"
-            >
-              <span ref={textInnerRef} className="sm-toggle-textInner flex flex-col leading-none">
-                {textLines.map((l, i) => (
-                  <span className="sm-toggle-line block h-[1em] leading-none" key={i}>
-                    {l}
-                  </span>
-                ))}
-              </span>
-            </span>
-
-            <span
-              ref={iconRef}
-              className="sm-icon relative w-[14px] h-[14px] shrink-0 inline-flex items-center justify-center"
-              aria-hidden="true"
-            >
-              <span
-                ref={plusHRef}
-                className="sm-icon-line absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2"
-              />
-              <span
-                ref={plusVRef}
-                className="sm-icon-line absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2"
-              />
-            </span>
-          </button>
-        </header>
-
-        <aside
-          id="staggered-menu-panel"
-          ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-48 backdrop-blur-xl pointer-events-auto"
-          style={{ WebkitBackdropFilter: 'blur(12px)' }}
-          aria-hidden={!open}
-        >
-          <div className="sm-panel-inner flex-1 flex flex-col gap-5">
-            <ul
-              className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2"
-              role="list"
-              data-numbering={displayItemNumbering || undefined}
-            >
-              {items && items.length ? (
-                items.map((it, idx) => (
-                  <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
-                    <a
-                      className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
-                      href={it.link}
-                      aria-label={it.ariaLabel}
-                      data-index={idx + 1}
-                    >
-                      <span className="sm-panel-itemLabel inline-block will-change-transform">
-                        {it.label}
-                      </span>
-                    </a>
-                  </li>
-                ))
-              ) : (
-                <li className="sm-panel-itemWrap relative overflow-hidden leading-none" aria-hidden="true">
-                  <span className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase inline-block no-underline pr-[1.4em]">
-                    <span className="sm-panel-itemLabel inline-block">
-                      No items
-                    </span>
-                  </span>
-                </li>
-              )}
-            </ul>
-
-            {displaySocials && socialItems && socialItems.length > 0 && (
-              <div className="sm-socials mt-auto pt-8 flex flex-col gap-3" aria-label="Social links">
-                <h3 className="sm-socials-title m-0 text-base font-medium" style={{ color: 'var(--sm-accent, #d6c3b0)' }}>
-                  Connect
-                </h3>
-                <ul
-                  className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap"
-                  role="list"
-                >
-                  {socialItems.map((s, i) => (
-                    <li key={s.label + i} className="sm-socials-item">
-                      <a
-                        href={s.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear hover:opacity-100"
-                        style={{ ['--sm-hover-color' as any]: 'var(--sm-accent, #d6c3b0)' } as React.CSSProperties}
-                      >
-                        {s.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </aside>
+        {colors.slice(0, 2).map((c, i) => (
+          <div
+            key={i}
+            className="sm-prelayer absolute top-0 h-full w-full"
+            style={{
+              background: c,
+              [position]: 0,
+              transform: `translateX(${position === 'left' ? '-100%' : '100%'})`
+            }}
+          />
+        ))}
       </div>
 
+      {/* Menu Panel */}
+      <div
+        ref={panelRef}
+        className="absolute top-0 h-full w-[clamp(260px,40vw,450px)] bg-white overflow-y-auto pointer-events-auto"
+        style={{
+          [position]: 0,
+          zIndex: 52,
+          transform: `translateX(${position === 'left' ? '-100%' : '100%'})`,
+          paddingTop: '6em',
+          paddingLeft: '2em',
+          paddingRight: '2em',
+          paddingBottom: '2em'
+        }}
+      >
+        <div className="flex flex-col gap-8 h-full">
+          <ul className="sm-panel-list list-none m-0 p-0 flex flex-col gap-4">
+            {items && items.length > 0 ? (
+              items.map((it, idx) => (
+                <li key={idx} className="overflow-hidden">
+                  <a
+                    href={it.link}
+                    className="text-black font-semibold text-[clamp(2.5rem,7vw,4rem)] leading-none tracking-[-2px] uppercase inline-block no-underline hover:text-[#d6c3b0] transition-colors"
+                    onClick={toggleMenu}
+                  >
+                    <span className="sm-panel-itemLabel inline-block">{it.label}</span>
+                  </a>
+                </li>
+              ))
+            ) : (
+              <li className="overflow-hidden">
+                <span className="text-black font-semibold text-[4rem] leading-none tracking-[-2px] uppercase">
+                  No items
+                </span>
+              </li>
+            )}
+          </ul>
+
+          {displaySocials && socialItems && socialItems.length > 0 && (
+            <div className="mt-auto pt-8 flex flex-col gap-3">
+              <h3 className="sm-socials-title m-0 text-base font-medium" style={{ color: accentColor }}>
+                Connect
+              </h3>
+              <ul className="list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap">
+                {socialItems.map((s, i) => (
+                  <li key={i}>
+                    <a
+                      href={s.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="sm-socials-link text-lg font-medium text-[#111] no-underline hover:opacity-100"
+                      style={{ color: accentColor }}
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Header */}
+      <header
+        className="absolute top-0 left-0 w-full flex items-center justify-between p-8 pointer-events-auto"
+        style={{ zIndex: 53 }}
+      >
+        <div className="flex items-center">
+          {logoUrl ? (
+            <img src={logoUrl} alt="Logo" className="h-8 w-auto" />
+          ) : (
+            <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-theme-warm to-theme-slate">
+              LUFFY
+            </span>
+          )}
+        </div>
+
+        <button
+          ref={toggleBtnRef}
+          onClick={toggleMenu}
+          className="flex items-center gap-2 bg-transparent border-0 cursor-pointer text-base font-medium"
+          style={{ color: menuButtonColor }}
+        >
+          <span className="relative inline-block h-[1em] overflow-hidden" style={{ width: '45px' }}>
+            <span ref={textInnerRef} className="flex flex-col leading-none">
+              {textLines.map((l, i) => (
+                <span key={i} className="block h-[1em] leading-none">
+                  {l}
+                </span>
+              ))}
+            </span>
+          </span>
+
+          <span ref={iconRef} className="relative w-[14px] h-[14px] flex items-center justify-center">
+            <span
+              ref={plusHRef}
+              className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded -translate-x-1/2 -translate-y-1/2"
+            />
+            <span
+              ref={plusVRef}
+              className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded -translate-x-1/2 -translate-y-1/2"
+            />
+          </span>
+        </button>
+      </header>
+
       <style jsx>{`
-        .sm-scope .staggered-menu-panel { width: clamp(260px, 38vw, 420px); }
-        .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
-        .sm-scope .sm-prelayers { width: clamp(260px, 38vw, 420px); }
-        .sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }
-        .sm-scope .sm-panel-item:hover { color: var(--sm-accent, #d6c3b0); }
-        .sm-scope .sm-socials-link:hover { color: var(--sm-accent, #d6c3b0); }
-        .sm-scope .sm-socials-list .sm-socials-link { opacity: 1; transition: opacity 0.3s ease; }
-        .sm-scope .sm-socials-list:hover .sm-socials-link:not(:hover) { opacity: 0.35; }
-        .sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
-        .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after {
-          counter-increment: smItem;
-          content: counter(smItem, decimal-leading-zero);
-          position: absolute;
-          top: 0.1em;
-          right: 3.2em;
-          font-size: 18px;
-          font-weight: 400;
-          color: var(--sm-accent, #d6c3b0);
-          letter-spacing: 0;
-          pointer-events: none;
-          user-select: none;
-          opacity: var(--sm-num-opacity, 0);
-        }
         @media (max-width: 1024px) {
-          .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; }
-          .sm-scope .staggered-menu-wrapper[data-open] .sm-logo span { filter: invert(100%); }
-        }
-        @media (max-width: 640px) {
-          .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; }
-          .sm-scope .sm-panel-item { font-size: 3rem; }
+          .sm-panel-list a {
+            font-size: clamp(2rem, 10vw, 3rem) !important;
+          }
         }
       `}</style>
     </div>
