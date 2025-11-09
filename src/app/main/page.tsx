@@ -10,6 +10,7 @@ const Particles = dynamic(() => import('@/components/ui/particles'), { ssr: fals
 const MetaBalls = dynamic(() => import('@/components/ui/metaballs'), { ssr: false });
 const MagnetLines = dynamic(() => import('@/components/ui/magnet-lines'), { ssr: false });
 const Cubes = dynamic(() => import('@/components/ui/cubes'), { ssr: false });
+const Navbar = dynamic(() => import('@/components/ui/navbar'), { ssr: false });
 
 const services = [
   {
@@ -58,15 +59,25 @@ const services = [
 
 export default function MainPage() {
   return (
-    <main className="min-h-screen bg-black">
-      {/* Particles Background */}
-      <div className="fixed inset-0 -z-10">
-        <Particles
-          particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
-          particleCount={120}
-          speed={0.3}
-        />
-      </div>
+    <>
+      <Navbar />
+      <main className="min-h-screen bg-black">
+        {/* Particles Background */}
+        <div className="fixed inset-0 -z-10">
+          <Particles
+            particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
+            particleCount={120}
+            speed={0.3}
+          />
+        </div>
+
+        {/* Grid pattern overlay */}
+        <div className="fixed inset-0 -z-10 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'linear-gradient(rgba(214,195,176,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(214,195,176,0.1) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
 
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center justify-center px-6 pt-20 pb-32">
@@ -78,15 +89,24 @@ export default function MainPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-warm via-white to-theme-slate">
-                    Digital Solutions
-                  </span>
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-slate via-theme-warm to-white">
-                    That Scale
-                  </span>
-                </h1>
+                <div className="relative">
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 blur-3xl opacity-30">
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight text-theme-warm">
+                      Digital Solutions That Scale
+                    </h1>
+                  </div>
+                  {/* Main text */}
+                  <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight">
+                    <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
+                      Digital Solutions
+                    </span>
+                    <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-warm via-white to-theme-slate">
+                      That Scale
+                    </span>
+                  </h1>
+                </div>
               </motion.div>
             </ScrollFade>
 
@@ -99,16 +119,24 @@ export default function MainPage() {
             <ScrollFade delay={0.4}>
               <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
                 <Link href="/contact">
-                  <button className="group relative overflow-hidden px-8 py-4 rounded-full font-bold text-base bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm hover:shadow-[0_0_40px_rgba(214,195,176,0.5)] transition-all duration-300">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group relative overflow-hidden px-8 py-4 rounded-full font-bold text-base bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm hover:shadow-[0_0_40px_rgba(214,195,176,0.5)] transition-all duration-300"
+                  >
                     <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
                       START PROJECT <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </span>
-                  </button>
+                  </motion.button>
                 </Link>
                 <Link href="/case-studies">
-                  <button className="px-8 py-4 rounded-full font-bold text-base border-2 border-theme-warm/30 text-theme-warm hover:border-theme-warm/60 hover:bg-theme-warm/5 transition-all duration-300">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 rounded-full font-bold text-base border-2 border-theme-warm/30 text-theme-warm hover:border-theme-warm/60 hover:bg-theme-warm/5 transition-all duration-300"
+                  >
                     VIEW WORK
-                  </button>
+                  </motion.button>
                 </Link>
               </div>
             </ScrollFade>
@@ -121,12 +149,21 @@ export default function MainPage() {
         <div className="container-custom max-w-7xl">
           <ScrollFade>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-warm to-theme-slate">
-                  Our Services
-                </span>
-              </h2>
-              <p className="text-muted-foreground text-lg">
+              <div className="relative inline-block">
+                {/* Glow effect */}
+                <div className="absolute inset-0 blur-2xl opacity-40">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4 text-theme-warm">
+                    Our Services
+                  </h2>
+                </div>
+                {/* Main text */}
+                <h2 className="relative text-4xl md:text-5xl font-bold mb-4">
+                  <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
+                    Our Services
+                  </span>
+                </h2>
+              </div>
+              <p className="text-theme-warm/70 text-lg font-light">
                 Full-stack solutions for modern businesses
               </p>
             </div>
@@ -154,14 +191,12 @@ export default function MainPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-2xl font-bold">
-                        <span className={`text-transparent bg-clip-text bg-gradient-to-r ${service.gradient}`}>
-                          {service.title}
-                        </span>
+                      <h3 className="text-2xl font-bold text-white">
+                        {service.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-muted-foreground/80 leading-relaxed">
+                      <p className="text-theme-warm/60 leading-relaxed">
                         {service.description}
                       </p>
 
@@ -184,12 +219,21 @@ export default function MainPage() {
         <div className="container-custom max-w-7xl">
           <ScrollFade>
             <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-slate to-theme-warm">
-                  Interactive Experiences
-                </span>
-              </h2>
-              <p className="text-muted-foreground text-lg">
+              <div className="relative inline-block">
+                {/* Glow effect */}
+                <div className="absolute inset-0 blur-2xl opacity-40">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4 text-theme-warm">
+                    Interactive Experiences
+                  </h2>
+                </div>
+                {/* Main text */}
+                <h2 className="relative text-4xl md:text-5xl font-bold mb-4">
+                  <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
+                    Interactive Experiences
+                  </span>
+                </h2>
+              </div>
+              <p className="text-theme-warm/70 text-lg font-light">
                 Cutting-edge animations and interactions
               </p>
             </div>
@@ -209,10 +253,10 @@ export default function MainPage() {
                     enableTransparency={true}
                   />
                 </div>
-                <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-theme-warm to-theme-slate mb-2">
+                <h3 className="text-xl font-bold text-white mb-2">
                   Fluid AI Systems
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-theme-warm/60">
                   Dynamic neural network visualizations
                 </p>
               </div>
@@ -229,10 +273,10 @@ export default function MainPage() {
                     lineColor="#475a6c"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-theme-slate to-theme-warm mb-2">
+                <h3 className="text-xl font-bold text-white mb-2">
                   Decentralized Networks
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-theme-warm/60">
                   Interactive blockchain connections
                 </p>
               </div>
@@ -251,10 +295,10 @@ export default function MainPage() {
                     autoAnimate={true}
                   />
                 </div>
-                <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-theme-warm to-theme-slate mb-2">
+                <h3 className="text-xl font-bold text-white mb-2">
                   Scalable Architecture
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-theme-warm/60">
                   Modular infrastructure design
                 </p>
               </div>
@@ -274,21 +318,34 @@ export default function MainPage() {
               </div>
 
               <div className="relative text-center space-y-8">
-                <h2 className="text-4xl md:text-6xl font-black">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-warm via-white to-theme-slate">
-                    Ready to Build?
-                  </span>
-                </h2>
-                <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+                <div className="relative">
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 blur-3xl opacity-40">
+                    <h2 className="text-4xl md:text-6xl font-black text-theme-warm">
+                      Ready to Build?
+                    </h2>
+                  </div>
+                  {/* Main text */}
+                  <h2 className="relative text-4xl md:text-6xl font-black">
+                    <span className="text-white drop-shadow-[0_0_40px_rgba(214,195,176,0.4)]">
+                      Ready to Build?
+                    </span>
+                  </h2>
+                </div>
+                <p className="text-lg md:text-xl text-theme-warm/70 max-w-2xl mx-auto font-light leading-relaxed">
                   Let's transform your vision into reality. From concept to production, we deliver exceptional results.
                 </p>
                 <div className="pt-4">
                   <Link href="/contact">
-                    <button className="group relative overflow-hidden px-12 py-5 rounded-full font-bold text-lg bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm hover:shadow-[0_0_60px_rgba(214,195,176,0.6)] transition-all duration-300">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative overflow-hidden px-12 py-5 rounded-full font-bold text-lg bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm hover:shadow-[0_0_60px_rgba(214,195,176,0.6)] transition-all duration-300"
+                    >
                       <span className="relative z-10 flex items-center gap-3 whitespace-nowrap">
-                        GET IN TOUCH <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                        START PROJECT <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform" />
                       </span>
-                    </button>
+                    </motion.button>
                   </Link>
                 </div>
               </div>
@@ -297,5 +354,6 @@ export default function MainPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

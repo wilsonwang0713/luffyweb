@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 const Particles = dynamic(() => import('@/components/ui/particles'), { ssr: false });
 const CircularText = dynamic(() => import('@/components/ui/circular-text'), { ssr: false });
+const Navbar = dynamic(() => import('@/components/ui/navbar'), { ssr: false });
 
 export default function Home() {
   const [isStarting, setIsStarting] = useState(false);
@@ -42,15 +43,25 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Background Particles */}
-      <div className="absolute inset-0 z-0">
-        <Particles
-          particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
-          particleCount={100}
-          speed={0.5}
-        />
-      </div>
+    <>
+      <Navbar />
+      <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        {/* Background Particles */}
+        <div className="absolute inset-0 z-0">
+          <Particles
+            particleColors={['#d6c3b0', '#475a6c', '#d6c3b0']}
+            particleCount={100}
+            speed={0.5}
+          />
+        </div>
+
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'linear-gradient(rgba(214,195,176,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(214,195,176,0.1) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
 
       {/* Main Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20">
@@ -62,15 +73,24 @@ export default function Home() {
         >
           {/* Main Heading */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-warm via-white to-theme-slate animate-gradient-shift">
-                LUFFY
-              </span>
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-slate via-theme-warm to-white">
-                DESIGN
-              </span>
-            </h1>
+            <div className="relative">
+              {/* Glow effect behind text */}
+              <div className="absolute inset-0 blur-3xl opacity-30">
+                <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight text-theme-warm">
+                  LUFFY DESIGN
+                </h1>
+              </div>
+              {/* Main text */}
+              <h1 className="relative text-6xl md:text-8xl lg:text-9xl font-black tracking-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-warm via-white to-theme-slate">
+                  LUFFY
+                </span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-slate via-theme-warm to-white">
+                  DESIGN
+                </span>
+              </h1>
+            </div>
           </motion.div>
 
           {/* Tagline */}
@@ -132,24 +152,29 @@ export default function Home() {
           {/* Stats/Features */}
           <motion.div
             variants={itemVariants}
-            className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-4xl"
+            className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl"
           >
             {[
-              { number: '50+', label: 'Projects' },
-              { number: '30+', label: 'Clients' },
-              { number: '6+', label: 'Services' },
-              { number: '100%', label: 'Quality' }
+              { number: '50+', label: 'Projects Delivered' },
+              { number: '30+', label: 'Global Clients' },
+              { number: '6', label: 'Core Services' },
+              { number: '24/7', label: 'Support' }
             ].map((stat, i) => (
               <motion.div
                 key={i}
-                className="group p-6 rounded-2xl border border-theme-warm/10 bg-theme-slate/5 backdrop-blur-sm hover:border-theme-warm/30 hover:bg-theme-warm/5 transition-all duration-300"
+                className="group relative p-6 rounded-2xl border border-theme-warm/10 bg-black/40 backdrop-blur-sm hover:border-theme-warm/30 hover:bg-theme-warm/5 transition-all duration-300 overflow-hidden"
                 whileHover={{ y: -5 }}
               >
-                <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-theme-warm to-theme-slate">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-muted-foreground mt-2">
-                  {stat.label}
+                {/* Animated background on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-theme-warm/5 via-transparent to-theme-slate/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-theme-warm/80 font-medium">
+                    {stat.label}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -176,5 +201,6 @@ export default function Home() {
         </motion.div>
       </div>
     </main>
+    </>
   );
 }
