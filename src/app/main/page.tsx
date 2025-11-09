@@ -11,6 +11,7 @@ const MetaBalls = dynamic(() => import('@/components/ui/metaballs'), { ssr: fals
 const MagnetLines = dynamic(() => import('@/components/ui/magnet-lines'), { ssr: false });
 const Cubes = dynamic(() => import('@/components/ui/cubes'), { ssr: false });
 const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
+const ScrambledText = dynamic(() => import('@/components/ui/scrambled-text'), { ssr: false });
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
@@ -169,6 +170,25 @@ export default function MainPage() {
               </div>
             </ScrollFade>
           </div>
+        </div>
+      </section>
+
+      {/* Interactive Slogan Section */}
+      <section className="relative px-6 py-16">
+        <div className="container-custom max-w-7xl">
+          <ScrollFade>
+            <div className="flex items-center justify-center">
+              <ScrambledText
+                radius={120}
+                duration={1.2}
+                speed={0.5}
+                scrambleChars="01"
+                className="text-center mx-auto"
+              >
+                We ship products, not promises. Code that scales. Design that converts. Results that matter.
+              </ScrambledText>
+            </div>
+          </ScrollFade>
         </div>
       </section>
 
