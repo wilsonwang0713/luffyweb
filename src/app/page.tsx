@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 
 const Orb = dynamic(() => import('@/components/ui/orb'), { ssr: false });
+const CircularText = dynamic(() => import('@/components/ui/circular-text'), { ssr: false });
 
 export default function Home() {
   const [isStarting, setIsStarting] = useState(false);
@@ -37,34 +37,42 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Arrow Button */}
-        <motion.button
+        {/* Circular Text Button */}
+        <motion.div
           onClick={handleStart}
-          disabled={isStarting}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          whileHover={{ scale: 1.15, x: 8 }}
-          whileTap={{ scale: 0.95 }}
-          className={`
-            flex items-center justify-center
-            w-20 h-20 rounded-full
-            bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm
-            hover:shadow-[0_0_60px_rgba(214,195,176,0.7)]
-            transition-all duration-300
-            ${isStarting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-          `}
+          className={`${isStarting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
         >
-          {isStarting ? (
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              className="w-10 h-10 border-4 border-white border-t-transparent rounded-full"
+          <div className="relative w-[200px] h-[200px] flex items-center justify-center">
+            {/* Background glow effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm blur-xl opacity-50" />
+
+            {/* Circular Text */}
+            <CircularText
+              text="LUFFYDESIGN*LUFFYDESIGN*"
+              spinDuration={20}
+              onHover="speedUp"
+              className="relative z-10"
             />
-          ) : (
-            <ArrowRight className="w-10 h-10 text-white" />
-          )}
-        </motion.button>
+
+            {/* Center loading indicator when starting */}
+            {isStarting && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  className="w-16 h-16 border-4 border-theme-warm border-t-transparent rounded-full"
+                />
+              </motion.div>
+            )}
+          </div>
+        </motion.div>
       </div>
     </main>
   );
