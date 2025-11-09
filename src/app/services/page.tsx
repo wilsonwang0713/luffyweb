@@ -101,9 +101,20 @@ export default function Services() {
         <div className="container-custom">
           <ScrollFade>
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <h1 className="text-5xl md:text-6xl font-bold">
-                Services That <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet to-aurora-cyan">Ship</span>
-              </h1>
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 blur-3xl opacity-30">
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight text-theme-warm">
+                    Services That Ship
+                  </h1>
+                </div>
+                {/* Main text */}
+                <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight">
+                  <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
+                    Services That Ship
+                  </span>
+                </h1>
+              </div>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Specialized technical capabilities across AI, Web3, design systems, and full-stack engineering.
               </p>

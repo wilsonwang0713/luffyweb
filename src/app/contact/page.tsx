@@ -8,10 +8,13 @@ import dynamic from 'next/dynamic';
 
 const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
 const Orb = dynamic(() => import('@/components/ui/orb'), { ssr: false });
+const TextType = dynamic(() => import('@/components/ui/text-type'), { ssr: false });
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Services', ariaLabel: 'View all services', link: '/services' },
+  { label: 'Main', ariaLabel: 'View main page', link: '/main' },
   { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
@@ -62,28 +65,42 @@ export default function Contact() {
         isFixed={true}
       />
 
-      <main className="min-h-screen relative">
-        {/* Orb Background */}
-        <div className="fixed inset-0 -z-10 flex items-center justify-center">
-          <div className="w-full h-full max-w-4xl max-h-4xl">
-            <Orb hue={30} hoverIntensity={0.2} rotateOnHover={true} forceHoverState={false} />
-          </div>
-        </div>
-
+      <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="py-32 px-4 relative z-10">
+        <section className="py-32 px-4">
         <div className="container-custom">
           <ScrollFade>
             <div className="max-w-3xl mx-auto text-center space-y-6">
-              <h1 className="text-5xl md:text-6xl font-bold">
-                Let's Build Something <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet via-aurora-cyan to-aurora-aqua">
-                  Exceptional
-                </span>
-              </h1>
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 blur-3xl opacity-30">
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight text-theme-warm">
+                    Let's Build Something Exceptional
+                  </h1>
+                </div>
+                {/* Main text */}
+                <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight">
+                  <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
+                    Let's Build Something Exceptional
+                  </span>
+                </h1>
+              </div>
               <p className="text-xl text-muted-foreground">
                 We work with companies that value craft, speed, and technical rigor. If you're ready to ship a real product, let's talk.
               </p>
+
+              {/* Text Type Effect */}
+              <div className="pt-8">
+                <TextType
+                  text={["Transform your vision into reality", "Build innovative digital products", "Ship with confidence"]}
+                  typingSpeed={75}
+                  pauseDuration={1500}
+                  showCursor={true}
+                  cursorCharacter="|"
+                  className="text-2xl font-bold text-theme-warm"
+                  cursorClassName="text-theme-warm"
+                />
+              </div>
             </div>
           </ScrollFade>
         </div>

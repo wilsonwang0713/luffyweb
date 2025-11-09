@@ -12,7 +12,9 @@ const Waves = dynamic(() => import('@/components/ui/waves'), { ssr: false });
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Services', ariaLabel: 'View all services', link: '/services' },
+  { label: 'Main', ariaLabel: 'View main page', link: '/main' },
   { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
@@ -103,32 +105,26 @@ export default function CaseStudies() {
         isFixed={true}
       />
 
-      <main className="min-h-screen relative">
-        {/* Waves Background */}
-        <div className="fixed inset-0 -z-10">
-          <Waves
-            lineColor="#fff"
-            backgroundColor="rgba(255, 255, 255, 0.2)"
-            waveSpeedX={0.02}
-            waveSpeedY={0.01}
-            waveAmpX={40}
-            waveAmpY={20}
-            friction={0.9}
-            tension={0.01}
-            maxCursorMove={120}
-            xGap={12}
-            yGap={36}
-          />
-        </div>
-
+      <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="py-32 px-4 relative z-10">
+        <section className="py-32 px-4">
         <div className="container-custom">
           <ScrollFade>
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <h1 className="text-5xl md:text-6xl font-bold">
-                Proven <span className="text-transparent bg-clip-text bg-gradient-to-r from-aurora-violet to-aurora-cyan">Results</span>
-              </h1>
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 blur-3xl opacity-30">
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight text-theme-warm">
+                    Proven Results
+                  </h1>
+                </div>
+                {/* Main text */}
+                <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight">
+                  <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
+                    Proven Results
+                  </span>
+                </h1>
+              </div>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Real projects. Measurable outcomes. Production systems serving thousands of users.
               </p>

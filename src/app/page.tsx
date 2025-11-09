@@ -45,7 +45,9 @@ export default function Home() {
 
   const menuItems = [
     { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-    { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+    { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+    { label: 'Services', ariaLabel: 'View all services', link: '/services' },
+    { label: 'Main', ariaLabel: 'View main page', link: '/main' },
     { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
     { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
   ];

@@ -16,6 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="antialiased font-sans">
         <FluidBackground />
         <LayoutWrapper>{children}</LayoutWrapper>

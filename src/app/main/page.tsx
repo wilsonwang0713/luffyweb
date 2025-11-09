@@ -14,7 +14,9 @@ const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { 
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/main' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Services', ariaLabel: 'View all services', link: '/services' },
+  { label: 'Main', ariaLabel: 'View main page', link: '/main' },
   { label: 'Work', ariaLabel: 'View our work', link: '/case-studies' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
@@ -249,18 +251,18 @@ export default function MainPage() {
                 {/* Glow effect */}
                 <div className="absolute inset-0 blur-2xl opacity-40">
                   <h2 className="text-4xl md:text-5xl font-bold mb-4 text-theme-warm">
-                    Interactive Experiences
+                    Technical Excellence
                   </h2>
                 </div>
                 {/* Main text */}
                 <h2 className="relative text-4xl md:text-5xl font-bold mb-4">
                   <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
-                    Interactive Experiences
+                    Technical Excellence
                   </span>
                 </h2>
               </div>
               <p className="text-theme-warm/70 text-lg font-light">
-                Cutting-edge animations and interactions
+                Innovation through cutting-edge technology and design
               </p>
             </div>
           </ScrollFade>
@@ -280,10 +282,10 @@ export default function MainPage() {
                   />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">
-                  Fluid AI Systems
+                  AI-Powered Solutions
                 </h3>
                 <p className="text-sm text-theme-warm/60">
-                  Dynamic neural network visualizations
+                  Intelligent systems that adapt and learn
                 </p>
               </div>
             </ScrollFade>
@@ -300,10 +302,10 @@ export default function MainPage() {
                   />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">
-                  Decentralized Networks
+                  Web3 Infrastructure
                 </h3>
                 <p className="text-sm text-theme-warm/60">
-                  Interactive blockchain connections
+                  Secure blockchain architecture and smart contracts
                 </p>
               </div>
             </ScrollFade>
@@ -322,10 +324,10 @@ export default function MainPage() {
                   />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">
-                  Scalable Architecture
+                  Enterprise Infrastructure
                 </h3>
                 <p className="text-sm text-theme-warm/60">
-                  Modular infrastructure design
+                  Scalable, resilient systems built for growth
                 </p>
               </div>
             </ScrollFade>
