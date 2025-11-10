@@ -5,7 +5,7 @@ import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MagneticButton } from '@/components/ui/magnetic-button';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { ArrowRight, Cpu, Wallet, Code2, Layers, CheckCircle2, Sparkles, Shield, Zap, Target } from 'lucide-react';
+import { ArrowRight, Cpu, Wallet, Code2, Layers, CheckCircle2, Sparkles, Shield, Zap, Target, Database, Server, MessageSquare } from 'lucide-react';
 
 const StaggeredMenu = dynamic(() => import('@/components/ui/staggered-menu'), { ssr: false });
 const RotatingText = dynamic(() => import('@/components/ui/rotating-text'), { ssr: false });
@@ -252,6 +252,239 @@ export default function Services() {
           </div>
         </section>
       ))}
+
+      {/* ERP Services Pricing Section */}
+      <section id="erp" className="py-32 px-4">
+        <div className="container-custom max-w-7xl">
+          <ScrollFade>
+            <div className="text-center mb-16">
+              <div className="relative inline-block mb-4">
+                <div className="absolute inset-0 blur-2xl opacity-40">
+                  <h2 className="text-4xl md:text-5xl font-bold text-theme-warm">
+                    ERP Services Pricing
+                  </h2>
+                </div>
+                <h2 className="relative text-4xl md:text-5xl font-bold">
+                  <span className="text-white drop-shadow-[0_0_30px_rgba(214,195,176,0.3)]">
+                    ERP Services Pricing
+                  </span>
+                </h2>
+              </div>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Powered by Odoo 17 Community Edition - Enterprise-grade ERP solutions for businesses of all sizes
+              </p>
+            </div>
+          </ScrollFade>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Free Plan */}
+            <ScrollFade delay={0.1}>
+              <div className="relative group h-full">
+                <div className="h-full p-8 rounded-2xl border border-theme-warm/20 bg-gradient-to-br from-black/40 via-theme-warm/5 to-black/40 backdrop-blur-sm hover:border-theme-warm/40 transition-all duration-500">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">Free Plan</h3>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-4xl font-black text-theme-warm">NTD 0</span>
+                      </div>
+                      <p className="text-sm text-theme-warm/70 mt-2">Free for 3 months</p>
+                    </div>
+
+                    <div className="h-px bg-gradient-to-r from-transparent via-theme-warm/30 to-transparent"></div>
+
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Odoo 17 Community Edition</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Unlimited Users</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Server className="h-5 w-5 text-theme-slate flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">2-core CPU</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Database className="h-5 w-5 text-theme-slate flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">2GB Storage</span>
+                      </li>
+                    </ul>
+
+                    <Link href="/contact" className="block">
+                      <button className="w-full px-6 py-3 rounded-lg border-2 border-theme-warm/30 text-theme-warm hover:border-theme-warm/60 hover:bg-theme-warm/5 transition-all duration-300 font-medium">
+                        Get Started
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </ScrollFade>
+
+            {/* Standard Plan */}
+            <ScrollFade delay={0.2}>
+              <div className="relative group h-full">
+                <div className="h-full p-8 rounded-2xl border border-theme-warm/20 bg-gradient-to-br from-black/40 via-theme-warm/5 to-black/40 backdrop-blur-sm hover:border-theme-warm/40 transition-all duration-500">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">Standard Plan</h3>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-4xl font-black text-theme-warm">NTD 888</span>
+                        <span className="text-muted-foreground">/month</span>
+                      </div>
+                      <p className="text-sm text-theme-warm/70 mt-2">Annual billing</p>
+                    </div>
+
+                    <div className="h-px bg-gradient-to-r from-transparent via-theme-warm/30 to-transparent"></div>
+
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Odoo 17 Community Edition</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Unlimited Users</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Server className="h-5 w-5 text-theme-slate flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">2-core CPU</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Database className="h-5 w-5 text-theme-slate flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">2GB Storage</span>
+                      </li>
+                    </ul>
+
+                    <Link href="/contact" className="block">
+                      <button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-theme-warm to-theme-slate text-white font-medium hover:shadow-[0_0_30px_rgba(214,195,176,0.4)] transition-all duration-300">
+                        Choose Plan
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </ScrollFade>
+
+            {/* Premium Plan */}
+            <ScrollFade delay={0.3}>
+              <div className="relative group h-full">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm rounded-2xl opacity-50 blur group-hover:opacity-75 transition-all duration-500"></div>
+                <div className="relative h-full p-8 rounded-2xl border border-theme-warm/40 bg-gradient-to-br from-black/60 via-theme-warm/10 to-black/60 backdrop-blur-sm">
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1 rounded-full bg-gradient-to-r from-theme-warm to-theme-slate text-xs font-bold text-white">
+                      POPULAR
+                    </span>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">Premium Plan</h3>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-4xl font-black text-theme-warm">NTD 1,688</span>
+                        <span className="text-muted-foreground">/month</span>
+                      </div>
+                      <p className="text-sm text-theme-warm/70 mt-2">Annual billing</p>
+                    </div>
+
+                    <div className="h-px bg-gradient-to-r from-transparent via-theme-warm/50 to-transparent"></div>
+
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Odoo 17 Community Edition</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Zap className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm font-medium text-white">E-Invoice Integration</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Unlimited Users</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Server className="h-5 w-5 text-theme-slate flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">2-core CPU</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Database className="h-5 w-5 text-theme-slate flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">2GB Storage</span>
+                      </li>
+                    </ul>
+
+                    <Link href="/contact" className="block">
+                      <button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-theme-warm via-theme-slate to-theme-warm text-white font-bold hover:shadow-[0_0_40px_rgba(214,195,176,0.6)] transition-all duration-300">
+                        Choose Plan
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </ScrollFade>
+
+            {/* Custom Plan */}
+            <ScrollFade delay={0.4}>
+              <div className="relative group h-full">
+                <div className="h-full p-8 rounded-2xl border border-theme-warm/20 bg-gradient-to-br from-black/40 via-theme-slate/5 to-black/40 backdrop-blur-sm hover:border-theme-warm/40 transition-all duration-500">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">Custom Plan</h3>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-black text-theme-warm">Custom</span>
+                      </div>
+                      <p className="text-sm text-theme-warm/70 mt-2">Contact sales for pricing</p>
+                    </div>
+
+                    <div className="h-px bg-gradient-to-r from-transparent via-theme-warm/30 to-transparent"></div>
+
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Odoo 17 Community Edition</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Unlimited Users</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Sparkles className="h-5 w-5 text-theme-warm flex-shrink-0 mt-0.5" />
+                        <span className="text-sm font-medium text-white">Custom Modules</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <Server className="h-5 w-5 text-theme-slate flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Custom Infrastructure</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <MessageSquare className="h-5 w-5 text-theme-slate flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">Dedicated Support</span>
+                      </li>
+                    </ul>
+
+                    <Link href="/contact" className="block">
+                      <button className="w-full px-6 py-3 rounded-lg border-2 border-theme-warm/30 text-theme-warm hover:border-theme-warm/60 hover:bg-theme-warm/5 transition-all duration-300 font-medium flex items-center justify-center gap-2">
+                        Contact Sales <ArrowRight className="h-4 w-4" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </ScrollFade>
+          </div>
+
+          {/* Additional Info */}
+          <ScrollFade delay={0.5}>
+            <div className="mt-16 text-center">
+              <div className="inline-block p-6 rounded-xl border border-theme-warm/20 bg-black/40 backdrop-blur-sm">
+                <p className="text-muted-foreground mb-2">
+                  All plans include free updates, security patches, and technical support
+                </p>
+                <p className="text-sm text-theme-warm/70">
+                  Need help choosing the right plan? <Link href="/contact" className="text-theme-warm hover:text-white transition-colors underline">Contact our team</Link>
+                </p>
+              </div>
+            </div>
+          </ScrollFade>
+        </div>
+      </section>
     </main>
     </>
   );
